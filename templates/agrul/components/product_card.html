@@ -1,10 +1,17 @@
 {% load static %}
 {% load humanize %}
+<style>
+    .product-img {
+        height: 150px;
+        /* width: 150px; */
+        object-fit: cover; /* Ensures the image maintains its aspect ratio within the fixed dimensions */
+    }
+</style>
 <div class="product-contents text-center p-3">
     <div class="product-image">
         <a href="javascript:void(0)" style="height: 180px; overflow: hidden; background: rgba(245, 245, 245, 0.60); border-radius: 10px;">
             {% if product.image %}
-            <img src="{{product.image.url}}" alt="Product" style="max-height: 100%;">
+            <img src="{{product.image.url}}" alt="{{product.name}}" class="product-img">
             {% endif %}
         </a>
         <div class="shop-action">
@@ -17,25 +24,13 @@
     </div>
     <div class="product-caption">
         <div class="product-tags">
-            <!-- <a href="shop.html#">Crop</a>
-            <a href="shop.html#">Organic</a> -->
             <a href="javascript:void(0)">{{product.category.name}}</a>
         </div>
         <h4 class="product-title">
             <a href="javascript:void(0)">{{product.name}}</a>
         </h4>
-        <!-- <div class="review-count">
-            <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>8 Reviews</span>
-        </div> -->
         <div class="price">
-            <span>Kes {{product.price|intcomma}}</span>
+            <span>KES {{product.price|intcomma}}</span>
         </div>
     </div>
 </div>

@@ -1,20 +1,28 @@
 {% load humanize %}
 {% load customtags %}
-<div class="card" style="border-radius: 10px;">
+<style>
+    .event-img {
+        height: 150px;
+        /* width: 150px; */
+        object-fit: cover; /* Ensures the image maintains its aspect ratio within the fixed dimensions */
+    }
+</style>
+<div class="card">
     <div class="card-body">
         <div class="blog-style-one">
-            <div class="thumb" style="height: 300px; background: rgba(245, 245, 245, 0.6); border-radius: 10px;">
+            <div class="thumb">
                 {% if event.image %}
-                <div class="h-100 bg-danger" style="overflow: hidden;">
+                <div class="h-100 bg-danger">
                     <a href="javascript:void(0)" class="bg-danger d-flex justify-content-center">
-                        <img src="{{event.image.url}}" alt="{{group.title}}"
-                            style="max-height: 100%; object-fit: fill;">
+                        <img src="{{event.image.url}}" alt="{{group.title}}" class="event-img">
                     </a>
                 </div>
                 {% endif %}
                 {% with event.date|tokenize_date as event_date_data %}
-                <div class="date"><strong>{{event_date_data.day}}</strong> <span>{{event_date_data.month}},
-                        {{event_date_data.year}}</span></div>
+                <div class="date">
+                    <strong>{{event_date_data.day}}</strong>
+                    <span>{{event_date_data.month}}, {{event_date_data.year}}</span>
+                </div>
                 {% endwith %}
             </div>
             <div class="info">
@@ -23,12 +31,11 @@
                         {{event.title}}
                     </a>
                 </h3>
-
-                <button class="btn btn-primary btn-sm mt-2" data-bs-target="#preview-modal" data-bs-toggle="modal"
-                    data-bs-title="{{event.title}}"
-                    data-bs-content="<img src='{% if event.image %}{{event.image.url}}{% endif %}' alt='{{event.title}}' class='w-100' /></br>{{event.description}}</br>Venue: {{event.venue}} <br> Date: {{event.date}} <div class='vr' style='height: 20px'></div> {% if upcoming %} {{event.date|timeuntil}} Remaining {% else %} {{event.date|timesince}} Ago {% endif %}">
-                    Event Information
-                </button>
+                <!-- <div class="d-flex justify-content-center"> -->
+                    <button class="btn btn-primary btn-sm mt-2" data-bs-target="#preview-modal" data-bs-toggle="modal" data-bs-title="{{event.title}}" data-bs-content="<img src='{% if event.image %}{{event.image.url}}{% endif %}' alt='{{event.title}}' class='w-100' /></br>{{event.description}}</br>Venue: {{event.venue}} <br> Date: {{event.date}} <div class='vr' style='height: 20px'></div> {% if upcoming %} {{event.date|timeuntil}} Remaining {% else %} {{event.date|timesince}} Ago {% endif %}">
+                        Event Information
+                    </button>
+                <!-- </div> -->
             </div>
         </div>
     </div>

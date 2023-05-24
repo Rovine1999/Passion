@@ -58,34 +58,25 @@
                     <div class="footer-item recent-post">
                         <h4 class="widget-title">Recent Posts</h4>
                         <ul>
+                            {% for event in new_events|slice:":3" %}
                             <li>
                                 <div class="thumb">
-                                    <a href="blog-single-with-sidebar.html">
-                                        <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Thumb">
+                                    <a href="#">
+                                        <img src="{{event.image.url}}" alt="{{event.title}}">
                                     </a>
                                 </div>
                                 <div class="info">
-                                    <div class="meta-title">
-                                        <span class="post-date">12 Sep, 2022</span>
-                                    </div>
-                                    <h5><a href="blog-single-with-sidebar.html">Meant widow equal an share least part.
-                                        </a></h5>
+                                    {% with event.date|tokenize_date as event_date_data %}
+                                        <div class="meta-title">
+                                            <span class="post-date">{{event_date_data.day}} {{event_date_data.month}}, {{event_date_data.year}}</span>
+                                        </div>
+                                    {% endwith %}
+                                    <h5>
+                                        <a href="#">{{event.title}}</a>
+                                    </h5>
                                 </div>
                             </li>
-                            <li>
-                                <div class="thumb">
-                                    <a href="blog-single-with-sidebar.html">
-                                        <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Thumb">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <div class="meta-title">
-                                        <span class="post-date">18 Jul, 2022</span>
-                                    </div>
-                                    <h5><a href="blog-single-with-sidebar.html">Future Plan & Strategy for Consutruction
-                                        </a></h5>
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -102,7 +93,7 @@
                                 </div>
                                 <div class="content">
                                     <strong>Address:</strong>
-                                    5919 Trussville Crossings Pkwy, Birmingham
+                                    E4Impact Entrepreneurship Centre Kenya, Ushirika Rd, Nairobi.
                                 </div>
                             </li>
                             <li>
@@ -111,7 +102,7 @@
                                 </div>
                                 <div class="content">
                                     <strong>Email:</strong>
-                                    <a href="mailto:info@validtheme.com">info@tundatamu.co.ke</a>
+                                    <a href="mailto:info@tundatamu.co.ke">info@tundatamu.co.ke</a>
                                 </div>
                             </li>
                             <li>
@@ -120,8 +111,7 @@
                                 </div>
                                 <div class="content">
                                     <strong>Phone:</strong>
-                                    <a href="tel:+254712387089">+254712387089</a>
-                                    
+                                    <a href="tel:+254712526952">+254 712 526952</a>
                                 </div>
                             </li>
                         </ul>
@@ -319,6 +309,21 @@
     $('.readmore').each(function () {
         $(this).readmore({
             collapsedHeight: 63,
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Initialize the carousel
+        var swiper = new Swiper('.carousel-stage-right', {
+            // Set the desired options for the carousel
+            loop: true,
+            slidesPerView: 4, // Display three items at a time
+            spaceBetween: 10, // Adjust the spacing between items if needed
+            autoplay: {
+                delay: 5000, // Set the delay between slides to 15 seconds
+            },
         });
     });
 </script>
