@@ -1,0 +1,93 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block content %}
+<!-- Start Breadcrumb 
+    ============================================= -->
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Create Your Provider Account Today</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Provider Sign Up</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb -->
+
+<!-- Providers -->
+
+<div class="farmer-area default-padding bottom-less">
+    <div class="container">
+        <div class="row col-lg-10 offset-lg-1">
+            {% if request.user.is_authenticated %}
+            <div>
+                {% include './../../components/provider_section.html' with provider_type='finance' title="Financial Providers" objs=financial_providers %}
+                {% include './../../components/provider_section.html' with provider_type='insurance' title="Insurance Providers" objs=insurance_providers %}
+                {% include './../../components/provider_section.html' with provider_type='transport' title="Transport & Providers" objs=transport_providers %}
+                {% include './../../components/provider_section.html' with provider_type='county' title="County Government" objs=county_providers %}
+                {% include './../../components/provider_section.html' with provider_type='coperative' title="Cooperative Providers" objs=cooperative_providers %}
+                {% include './../../components/provider_section.html' with provider_type='input' title="Input Suppliers & Aggrovets" objs=input_providers %}
+                {% include './../../components/provider_section.html' with provider_type='processor' title="Processors" objs=processor_providers %}
+                {% include './../../components/aggregators.html' with title="Aggregators" objs=aggregators %}
+            </div>
+            {% else %}
+            <div style="height: 200px;">
+                <div class="card h-100 rounded d-flex justify-content-center align-items-center">
+                    <h3>You must be logged in to view the providers</h3>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    const spinner_ = () => {
+        return `
+            <div class="spinner-border ml-sm" role="status" aria-hidden="true"></div>
+		`
+    }
+
+    const addFriend = (event, user_id) => {
+        const loc = window.location
+        const url = `${loc.protocol}//${loc.host}/interact/api/add-friend/`
+
+        const formdata = new FormData()
+        formdata.append('user_id', user_id)
+
+        toastr.options = {
+            positionClass: "toast-bottom-center",
+            progressBar: true,
+            timeOut: 10000
+        }
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+
+        const loader = event.children[1]
+        loader.innerHTML = spinner_()
+
+        axios.post(url, formdata, { headers }).then((response) => {
+            const data = response.data;
+            const loc = window.location
+            toastr.info('Farmer added as friend. You can now start interacting in interact page.')
+            loc.reload()
+        }).catch((error) => {
+            toastr.error(`Error - ${error.message}`)
+        });
+    };
+</script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Farmers Upload {% endblock %}
+
+{% block styles %}
+<style>
+    /* #table_info {
+        display: none !important;
+    } */
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>Upload Farmers</h1>
+    <p class="text-muted">
+        Welcome back, <span class="text-capitalize">{{request.user.first_name}}</span>
+    </p>
+
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <h2>Farmers upload</h2>
+                        <a href="{% static 'files/Sweet Yellow Passion farmer formart.xlsx' %}" download class="btn btn-primary">Download Sample File</a>
+                        {% for msg in messages %}
+                        {% if msg.tags == "error" %}
+                        <div class="alert alert-danger py-3">
+                            {{msg}}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-{{msg.tags}} py-3">
+                            {{msg}}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label id="enumerator" class="form-label">Select Enumerator</label>
+                                <select name="enumerator" required id="enumerator" class="form-select shadow-none">
+                                    <option value="">Select Enumerator</option>
+                                    {% for enum in 'enumerator'|get_model_entries %}
+                                    <option value="{{enum.id}}">{{enum.user.first_name}} {{enum.user.last_name}} - {{enum.company.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="csv" class="form-label">Select csv or xls or xlsx file to upload</label>
+                                <input type="file" id="csv" accept=".csv, .xls, .xlsx" name="csv" class="form-control" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <button class="btn btn-primary">
+                                    Upload
+                                </button>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+    integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<script>
+    $(document).ready(function () {
+        "use strict";
+
+        $('#table').DataTable({
+            scrollX: true,
+            pageLength: 25,
+            paging: false,
+            info: false
+        })
+
+        $('select').select2()
+
+    })
+</script>
+{% endblock %}

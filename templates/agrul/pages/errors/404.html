@@ -1,0 +1,41 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Page Not Found {% endblock %}
+
+{% block content %}
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>404 Page Not Found</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">404</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="error-page-area default-padding text-center">
+    <div class="container">
+        <div class="error-box">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h1>404</h1>
+                    <h2>Sorry Page Was Not Found!</h2>
+                    <p>
+                        The page you are trying to access was not found.
+                    </p>
+                    <a class="btn mt-20 btn-md btn-theme secondary" href="{% url 'home' %}">Back to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End 404 -->
+{% endblock %}

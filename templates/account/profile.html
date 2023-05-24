@@ -1,0 +1,262 @@
+{% extends './../components/base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Account - My Profile {% endblock %}
+
+{% block navbar %}
+{% include './../components/farmerspagemainnavbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-dark header-container d-flex justify-content-center align-items-center market-banne"
+    style="height: 250px;">
+    <div class="">
+        <h1 class="text-center text-white">My Profile</h1>
+        <p class="text-center text-white">
+            {{request.user.username}}
+        </p>
+        <p class="text-center text-white">
+            Edit Profile Info
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow p-2 p-md-4 border-0 mb-5" style="border-radius: 20px;">
+                <h2 class="mb-3">Personal Information</h2>
+                <div>
+                    <form id="user_form" action="" class="form">
+                        {% csrf_token %}
+                        <input type="text" value="{{request.user.id}}" id="user_id" class="d-none">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="first_name" class="form-label">First Name</label>
+                                <input type="text" id="first_name" class="form-control shadow-none px-3 py-2"
+                                    value="{{request.user.first_name}}" name="first_name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="last_name" class="form-label">Last Name</label>
+                                <input type="text" id="last_name" class="form-control shadow-none px-3 py-2"
+                                    value="{{request.user.last_name}}" name="last_name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" id="email" class="form-control shadow-none px-3 py-2"
+                                    value="{{request.user.email}}" name="email">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" disabled id="username" class="form-control shadow-none px-3 py-2"
+                                    value="{{request.user.username}}" name="username">
+                            </div>
+                            <div class="col-md-12">
+                                <div id="msgSubmit" class="py-2"></div>
+                                <div id="msgSubmitErrors" class="py-2"></div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="h-100 d-flex align-items-end">
+                                    <button class="btn btn-success px-5 py-2">Update</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <h2 class="my-3">Profile Information</h2>
+                <div>
+                    <form id="profile_form" action="" class="form">
+                        {% csrf_token %}
+                        <input type="text" value="{{request.user.profile.id}}" id="profile_id" class="d-none">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="county" class="form-label">County</label>
+                                <select id="gender" class="form-control shadow-none px-3 py-2" name="county">
+                                    {% for county in 'counties'|counties %}
+                                    <option value="{{county.id}}" {% if request.user.profile.county.id == county.id %} selected {% endif %}>{{county.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div> 
+                            <div class="col-md-6 mb-3">
+                                <label for="phone_number" class="form-label">Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        +254
+                                    </span>
+                                    <input maxlength="9" minlength="9" type="number" id="phone_number" class="form-control shadow-none px-3 py-2"
+                                    value="{{request.user.profile.phone_number}}" name="phone_number">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="alt_phone_number" class="form-label">Alt Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        +254
+                                    </span>
+                                    <input maxlength="9" minlength="9" type="number" id="alt_phone_number" class="form-control shadow-none px-3 py-2"
+                                        value="{{request.user.profile.alt_phone_number}}" name="alt_phone_number">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="year_of_birth" class="form-label">Year of Birth</label>
+                                <input type="number" id="year_of_birth"
+                                    class="form-control shadow-none px-3 py-2"
+                                    value="{{request.user.profile.year_of_birth}}" name="year_of_birth">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select id="gender" class="form-control shadow-none px-3 py-2" name="gender">
+                                    <option value="male" {% if request.user.profile.gender == "male" %} selected {% endif %}>Male</option>
+                                    <option value="female" {% if request.user.profile.gender == "female" %} selected {% endif %}>Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <div id="msgSubmit" class="py-2"></div>
+                                <div id="msgSubmitErrors" class="py-2"></div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="h-100 d-flex align-items-end">
+                                    <button class="btn btn-success px-5 py-2">Update</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card shadow p-2 p-md-4 border-0 mb-5" style="border-radius: 20px;">
+                <h2 class="mb-3">Profile Photo</h2>
+                <div>
+                    <form id="profile_photo_form" action="" class="form">
+                        {% csrf_token %}
+                        <input type="text" value="{{request.user.profile.id}}" id="profile_id" class="d-none">
+
+                        <div class="row">
+
+                            <div class="col-md-12 mb-3">
+                            <div class="h-100 d-flex justify-content-center">
+                                <div class="nav-logo" style="--size: 100px">
+                                    {% if request.user.profile.profile_photo %}
+                                    <img src="{{request.user.profile.profile_photo.url}}" alt="">
+                                    {% else %}
+                                    {{request.user.username|make_list|first}}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <div class="h-100 d-flex align-items-center">
+                                <div class="w-100">
+                                    <label for="first_name" class="form-label">First Name</label>
+                                    <input type="file" id="first_name" class="form-control shadow-none px-3 py-2" name="profile_photo">
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div id="msgSubmit" class="py-2"></div>
+                                <div id="msgSubmitErrors" class="py-2"></div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="h-100 d-flex align-items-end">
+                                    <button class="btn btn-success px-5 py-2">Update</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "./components/enumerator.html" %}
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+    const spinner_ = () => {
+        return `
+			<div class="d-flex align-items-center justify-content-center flex-column">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+    }
+
+    $("#user_form").on("submit", e => {
+        e.preventDefault()
+        const loc = window.location
+        const userID = $('#user_id').val()
+        const url = `${loc.protocol}//${loc.host}/api/users/${userID}/`
+        update('user_form', url)
+    })
+    $("#profile_form").on("submit", e => {
+        e.preventDefault()
+        const loc = window.location
+        const profileID = $('#profile_id').val()
+        const url = `${loc.protocol}//${loc.host}/api/user-profiles/${profileID}/`
+        update('profile_form', url)
+    })
+
+    $("#profile_photo_form").on("submit", e => {
+        e.preventDefault()
+        const loc = window.location
+        const profileID = $('#profile_id').val()
+        const url = `${loc.protocol}//${loc.host}/api/user-profiles/${profileID}/`
+        update('profile_photo_form', url)
+    })
+
+    const update = (form_id, url) => {
+
+        const formdata = new FormData(document.getElementById(form_id))
+        // formdata.append('user.username', $(`#${form_id} #phone_number`).val())
+        // formdata.append('user.profile.county_number', $(`#${form_id} #county_number`).val())
+
+        toastr.options = {
+            positionClass: "toast-bottom-center",
+            progressBar: true,
+            timeOut: 10000
+        }
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+
+        $(`#${form_id} #msgSubmitErrors`).html("")
+        $(`#${form_id} #msgSubmit`).html(spinner())
+        axios.put(url, formdata, { headers }).then((response) => {
+            const data = response.data;
+            const loc = window.location
+            toastr.info('Account Updated Successfully')
+            $(`#${form_id} #msgSubmit`).html(`<div class="alert alert-success">Account Updated Successfully.</div>`)
+        }).catch((error) => {
+            toastr.error(`Error - ${error.message}`)
+            $(`#${form_id} #msgSubmit`).html(`<div class="alert alert-danger">${error.message}</div>`)
+            if (typeof error?.response?.data === 'object') {
+                const error_data = error?.response?.data
+                if (error_data?.user?.username) {
+                    toastr.info('Your Phone number seems to be already in the system. Change it.')
+                }
+                const stringified_error = JSON.stringify(error_data, null, 4)
+                const highlight_HTML = hljs.highlight(stringified_error, { language: 'json' }).value
+                const header = `<h4>Errors</h4>`
+                $(`#${form_id} #msgSubmitErrors`).html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+            }
+        });
+    };
+
+</script>
+
+{% endblock %}

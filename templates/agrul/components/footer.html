@@ -1,0 +1,324 @@
+{% load static %}
+{% load customtags %}
+
+
+<!-- Start Footer 
+    ============================================= -->
+<footer class="bg-dark text-light" style="background-image: url(assets/img/shape/brush-down.png);">
+    <div class="container">
+        <div class="f-items default-padding">
+            <div class="row">
+
+                <!-- Single Itme -->
+                <div class="col-lg-4 col-md-6 item">
+                    <div class="footer-item about">
+                        <img class="logo" src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Logo">
+                        <p>
+                            Happen active county. Winding morning ambition shyness evident to poor. Because elderly new
+                            to the point to main success.
+                        </p>
+                        <form action="index-3.html#">
+                            <input type="email" placeholder="Your Email" class="form-control" name="email">
+                            <button type="submit"> Go</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Single Itme -->
+
+                <!-- Single Itme -->
+                <div class="col-lg-2 col-md-6 item">
+                    <div class="footer-item link">
+                        <h4 class="widget-title">Explore</h4>
+                        <ul>
+                            <li>
+                                <a href="about-us.html">About Us</a>
+                            </li>
+                            <li>
+                                <a href="team.html">Marketplace</a>
+                            </li>
+                            <li>
+                                <a href="blog-single-with-sidebar.html">News & Events</a>
+                            </li>
+                            <li>
+                                <a href="services.html">Services Providers</a>
+                            </li>
+                            <li>
+                                <a href="contact-us.html">Resource center</a>
+                            </li>
+                            <li>
+                                <a href="team-details.html">Contac Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Single Itme -->
+
+                <!-- Single Itme -->
+                <div class="col-lg-3 col-md-6 item">
+                    <div class="footer-item recent-post">
+                        <h4 class="widget-title">Recent Posts</h4>
+                        <ul>
+                            <li>
+                                <div class="thumb">
+                                    <a href="blog-single-with-sidebar.html">
+                                        <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Thumb">
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <div class="meta-title">
+                                        <span class="post-date">12 Sep, 2022</span>
+                                    </div>
+                                    <h5><a href="blog-single-with-sidebar.html">Meant widow equal an share least part.
+                                        </a></h5>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="thumb">
+                                    <a href="blog-single-with-sidebar.html">
+                                        <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Thumb">
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <div class="meta-title">
+                                        <span class="post-date">18 Jul, 2022</span>
+                                    </div>
+                                    <h5><a href="blog-single-with-sidebar.html">Future Plan & Strategy for Consutruction
+                                        </a></h5>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Single Itme -->
+
+                <!-- Single Itme -->
+                <div class="col-lg-3 col-md-6 item">
+                    <div class="footer-item contact">
+                        <h4 class="widget-title">Contact Info</h4>
+                        <ul>
+                            <li>
+                                <div class="icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="content">
+                                    <strong>Address:</strong>
+                                    5919 Trussville Crossings Pkwy, Birmingham
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="content">
+                                    <strong>Email:</strong>
+                                    <a href="mailto:info@validtheme.com">info@tundatamu.co.ke</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="content">
+                                    <strong>Phone:</strong>
+                                    <a href="tel:+254712387089">+254712387089</a>
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Itme -->
+
+            </div>
+        </div>
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>&copy; Copyright 2023. All Rights Reserved by <a href="index-3.html#">E4impact Entrepreneurship
+                            Center, Kenya</a></p>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <ul>
+                        <li>
+                            <a href="{% url 'tcs' %}">Terms</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contactus' %}">Support</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Bottom -->
+    </div>
+    <div class="shape-right-bottom">
+        <img src="assets/img/shape/10.png" alt="Image Not Found">
+    </div>
+    <div class="shape-left-bottom">
+        <img src="assets/img/shape/11.png" alt="Image Not Found">
+    </div>
+</footer>
+<!-- End Footer -->
+
+<!-- Preview modal -->
+<div class="modal fade" id="preview-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="title" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="title"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="content"></div>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- End preview modal -->
+
+<!-- jQuery Frameworks
+    ============================================= -->
+<script src="{% static 'agrul/assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/jquery.appear.js' %}"></script>
+<script src="{% static 'agrul/assets/js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/modernizr.custom.13711.js' %}"></script>
+<script src="{% static 'agrul/assets/js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/wow.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/progress-bar.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/circle-progress.js' %}"></script>
+<script src="{% static 'agrul/assets/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/count-to.js' %}"></script>
+<script src="{% static 'agrul/assets/js/jquery.scrolla.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/YTPlayer.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/TweenMax.min.js' %}"></script>
+<script src="{% static 'agrul/assets/js/loopcounter.js' %}"></script>
+<script src="{% static 'agrul/assets/js/validnavs.js' %}"></script>
+<script src="{% static 'agrul/assets/js/main.js' %}"></script>
+<!-- Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Toastr js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Custom js scripts -->
+<script src="{% static 'agrul/assets/js/utils.js' %}"></script>
+<script src="{% static 'agrul/assets/js/cart.js' %}"></script>
+<script src="{% static 'agrul/assets/js/firebase.js' %}"></script>
+
+<!-- Preview modal js -->
+<script>
+    $('#preview-modal').on('show.bs.modal', event => {
+        const targetBtn = event.relatedTarget
+        const title = targetBtn.getAttribute('data-bs-title')
+        const content = targetBtn.getAttribute('data-bs-content')
+        console.log(title)
+        $('#preview-modal #title').text(title)
+        $('#preview-modal #content').html(content)
+    })
+</script>
+
+<!-- End preview modal js -->
+
+
+<!-- Hightlight JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+<!-- Bootstrap tourist JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shepherd.js/7.1.2/js/shepherd.js"></script>
+
+<!-- Readmore JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.0.2/readmore.min.js"></script>
+
+<!--Whatsapp button-->
+<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+<script>
+    var wa_btnSetting = {
+        "btnColor": "#16BE45", "ctaText": "", "cornerRadius": 40, "marginBottom": 20, "marginLeft": 20, "marginRight": 20, "btnPosition": "left", "whatsAppNumber": "254740118698", "welcomeMessage":
+            "Hi, I am interested in your service. I am currently at this url: {{request.get_full_path}}.", "zIndex": 999999, "btnColorScheme": "light"
+    };
+    window.onload = () => {
+        _waEmbed(wa_btnSetting);
+    };
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/63f3b81a31ebfa0fe7ee5614/1gpo0eb28';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+
+<!-- Initiate tooltips -->
+
+<script>
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+
+<!-- Bootstrap tour JS settings -->
+<script>
+
+    function createStep(title, text, element, position) {
+        return {
+            title, text, element, position
+        }
+    }
+
+    function appendTours(tour, steps) {
+        steps?.forEach(step => {
+            tour.addStep({
+                title: step.title,
+                text: step.text,
+                attachTo: {
+                    element: step.element,
+                    on: step.position
+                },
+                buttons: [
+                    {
+                        action() {
+                            return this.back();
+                        },
+                        classes: 'shepherd-button-secondary',
+                        text: 'Back'
+                    },
+                    {
+                        action() {
+                            return this.next();
+                        },
+                        text: 'Next'
+                    }
+                ],
+                id: 'creating'
+            });
+        })
+
+    }
+
+</script>
+
+<!-- Readmore more button -->
+<!-- Add class readmore to the content you want to hide -->
+<script>
+    $('.readmore').each(function () {
+        $(this).readmore({
+            collapsedHeight: 63,
+        });
+    });
+</script>

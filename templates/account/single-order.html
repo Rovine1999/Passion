@@ -1,0 +1,171 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block title %} Market Place - Account | order#{{order.uuid}} {% endblock %}
+
+{% block navbar %}
+{% include './../components/farmerspagemainnavbar.html' %}
+{% endblock %}
+
+{% block meta %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
+    integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-dark header-container d-flex justify-content-center align-items-center market-banne"
+    style="height: 300px;">
+    <div class="">
+        <h1 class="text-center text-white">Order #{{order.uuid}}</h1>
+        <p class="text-center text-white">
+            Previewing an order
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mb-3">
+            <div class="card shadow p-3 border-0">
+                <h2 class="mb-3">Order #{{order.id}}</h2>
+                <h3>Order Items</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price (KES)</th>
+                                <th>Qty</th>
+                                <th>Sub total (KES)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                            {% for item in items %}
+                            <tr>
+                                <td>
+                                    <div class="cart-image">
+                                        <img src="{{item.product.image.url}}" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    {{item.product.name}}
+                                </td>
+                                <td>
+                                    {{item.product.price}}
+                                </td>
+                                <td>
+                                    {{item.quantity}}
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex align-items-center justify-content-end px-5 py-2">
+                    <h2 class="me-3">Total</h2>
+                    <h3> KES {{order.amount}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-lg border-0 px-4 py-4">
+                <h3 class="mb-3">Cart Items</h3>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <h5>Total Items</h5>
+                    </div>
+                    <div class="col-6">
+                        <h5>{{items|length}}</h5>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <h5>Cart Total</h5>
+                    </div>
+                    <div class="col-6">
+                        <h5>KES {{order.amount}}</h5>
+                    </div>
+                </div>
+                {% if request.user.is_authenticated %}
+                {% if order.paid == True %}
+                <button class="btn btn-primary">
+                    Payment already done
+                </button>
+                {% else %}
+                <div class="d-flex gap-2">
+                    <a href="{{charge.hosted_url}}" class="btn btn-success">
+                        Crypto Payment
+                    </a>
+                    <button
+                        onclick="MpesaSTKPushPost('{{order.id}}', '{{order.uuid}}', '{{order.amount}}', '{{order.user.profile.phone_number}}')"
+                        class="btn btn-success">
+                        M-Pesa Payment
+                    </button>
+                </div>
+                {% endif %}
+                {% else %}
+                <div class="alert alert-info">
+                    You must be logged in to place an order
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+<script>
+    function MpesaSTKPushPost(order_id, uuid, amount, phone_number) {
+        const order_id_ = parseInt(order_id)
+        const amount_ = parseFloat(amount)
+        const phone_number_ = (phone_number)
+
+       
+
+        var data = JSON.stringify({
+            "order_id": order_id_,
+            "amount": amount_,
+            "phone_number": phone_number_
+        });
+
+        var config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'https://e4impact.e-granary.com/api/ipn/ke/mpesa/lnmo/transact',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                toastr.success("Transaction posted successfully, kindly input your pin on the phone to complete the transaction.")
+            })
+            .catch(function (error) {
+                console.log(error);
+                toastr.error("An error occured while trying to make the request")
+            });
+
+   
+
+ }
+</script>
+
+{% endblock %}

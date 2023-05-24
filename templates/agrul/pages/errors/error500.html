@@ -1,0 +1,37 @@
+{% extends './../components/base.html' %}
+{% load static %}
+{% block title %} 500 Internal Server Error {% endblock title %}
+
+{% block navbar %}
+{% include './../components/farmerspagemainnavbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Content Header (Page header) -->
+<div class="bg-dark header-container d-flex justify-content-center align-items-center market-banne">
+    <div class="">
+        <h1 class="text-center text-white">500 Internal Server Error</h1>
+        <p class="text-center text-white">
+            You have encountered an <br> Internal Server Error
+        </p>
+    </div>
+</div>
+
+<div class="contact-section bg-white" style="background: #f7f7f7 !important;">
+    <div class="contact-top padding-top padding-bottom">
+        <div class="container" style="padding: 70px 0">
+            <div class="d-flex justify-content-center flex-column align-items-center gap-4">
+                <img src="https://www.kindpng.com/picc/m/164-1647046_500-internal-server-error-jack-o-lantern-hd.png"
+                    alt="500 Internal Server Error - Jack-o'-lantern, HD Png Download@kindpng.com"
+                    style="max-width: 600px;">
+                <h2 style="font-size: 52px;">INTERNAL SERVER ERROR</h2>
+            </div>
+            <div>
+                {{error_message|safe}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

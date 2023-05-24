@@ -1,0 +1,797 @@
+{% extends './../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Welcome to Tunda Tamu {% endblock %}
+
+{% block content %}
+<!-- Start Banner Area 
+    ============================================= -->
+<div class="banner-area navigation-circle text-light text-center banner-style-three-area zoom-effect overflow-hidden">
+    <!-- Slider main container -->
+    <div class="banner-fade">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+
+            <!-- Single Item -->
+            <div class="swiper-slide banner-style-three">
+                <div class="banner-thumb bg-cover shadow dark"
+                    style="background: url(/static/agrul/assets/img/banner/25_1.jpg);"></div>
+                <div class="container">
+                    <div class="row align-center">
+                        <div class="col-lg-10 offset-lg-1">
+                            <div class="content">
+                                <h2>Ultimate Products <br> & Customers</h2>
+                                <div class="button">
+                                    <a class="btn btn-theme secondary btn-md radius animation"
+                                        href="{% url 'marketplace' %}">Discover More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Item -->
+
+            <!-- Single Item -->
+            <div class="swiper-slide banner-style-three">
+                <div class="banner-thumb bg-cover shadow dark"
+                    style="background: url(/static/agrul/assets/img/banner/27_1.png);"></div>
+                <div class="container">
+                    <div class="row align-center">
+                        <div class="col-lg-10 offset-lg-1">
+                            <div class="content">
+                                <h2>Natural & Organic <br> Marketplace </h2>
+                                <div class="button">
+                                    <a class="btn btn-theme secondary btn-md radius animation"
+                                        href="{% url 'marketplace' %}">Discover More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Item -->
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+    </div>
+</div>
+<!-- End Main -->
+
+<!-- Start Product Features 
+    ============================================= -->
+<div class="product-feature-style-one-area overflow-hidden default-padding">
+    <div class="container">
+        <div class="row align-center">
+            <div class="col-lg-5 mb-xs-50 mb-md-120">
+                <div class="product-feature-style-one">
+                    <div class="info">
+                        <h4 class="sub-title">Sweet yellow passion at your disposal!</h4>
+                        <h2 class="title mb-25 text-center">Identify, Buy & Sell! </h2>
+                        <p>
+                            Welcome to our online marketplace for sweet yellow passion - the perfect destination for
+                            those who love the exotic and sweet taste of this tropical fruit! At our platform, we are
+                            committed to creating a sustainable and inclusive value chain that benefits all
+                            stakeholders, including smallholder farmers, service providers, and market.
+                            We work directly with smallholder farmers to source the highest quality sweet yellow
+                            passion, ensuring fair prices and sustainable farming practices. Our network of service
+                            providers and stakeholders includes logistics companies, processors, and suppliers who help
+                            us transform the fruit into a range of delicious and healthy products.
+                            Our online marketplace offers a variety of sweet yellow passion products, including fresh
+                            fruit, seedlings and service provider services and more. By working with local farmers and
+                            producers?aggregators, we ensure that our customers receive the freshest and most flavorful
+                            products
+                            possible.
+                        </p>
+                        <a href="https://www.youtube.com/watch?v=ZuzZXT3A1aQ"
+                            class="popup-youtube video-play-button with-text mt-15">
+                            <div class="effect"></div>
+                            <span><i class="fas fa-play"></i> OUR STORY</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="product-features-style-one pl-100 pl-md-15 pl-xs-15 pt-md-120">
+                    <div class="organic-badge">
+                        <img src="{% static 'agrul/assets/img/illustration/badge.png' %}" alt="Badge">
+                    </div>
+                    <div class="product-feature-item">
+                        <div class="thumb">
+                            <img src="{% static 'agrul/assets/img/thumb/10.png' %}" alt="Thumb">
+                        </div>
+                        <h4><a href="index-3.html#">Fresh Sweet Yellow Passion Fruits</a></h4>
+                    </div>
+                    <div class="product-feature-item">
+                        <div class="thumb">
+                            <img src="{% static 'agrul/assets/img/thumb/9_1-removebg-preview.png' %}" alt="Thumb">
+                        </div>
+                        <h4><a href="index-3.html#">Seedlings</a></h4>
+                    </div>
+                    <div class="product-feature-item">
+                        <div class="thumb">
+                            <img src="{% static 'agrul/assets/img/thumb/7-removebg-preview.png' %}" alt="Thumb">
+                        </div>
+                        <h4><a href="index-3.html#">Fertilizer</a></h4>
+                    </div>
+                    <div class="product-feature-item">
+                        <div class="thumb">
+                            <img src="{% static 'agrul/assets/img/thumb/8-removebg-preview.png' %}" alt="Thumb">
+                        </div>
+                        <h4><a href="index-3.html#">Juice</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Product Features -->
+
+<!-- Start Why Choose Us 
+    ============================================= -->
+<div class="choose-us-style-two-area half-bg-light bg-gray default-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-5">
+                <div class="choose-us-style-two">
+                    <img src="{% static 'agrul/assets/img/about/passion-flower.jpg' %}" alt="Thumb">
+                    <h3 class="title mt-30">Products and Services</h3>
+                    <div class="content">
+                        <ul class="list-grid">
+                            <li>Fresh Sweet Yellow Passion Friuts</li>
+                            <li>Input supplies</li>
+                            <li>Market Linkages</li>
+                            <li>Sweet yellow passion seedlings</li>
+                            <li>Stakeholder interaction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 offset-lg-1 mt-80 mt-xs-0">
+                <div class="choose-us-style-two">
+
+                    <h2 style="color: #1f4e3d;" class="title mb-30 mt-xs-30 text-center ">Did you know? </h2>
+                    <p>
+                        "The fruit was given its name by Spanish missionaries who saw the flower's resemblance to the
+                        passion of Christ, with the corona representing the crown of thorns, and the stamens
+                        representing the nails on the cross."
+                    <div class="fun-fact-style-one mb-50 align-center">
+                        <div class="fun-fact">
+                            <div class="counter">
+                                <div class="timer" data-to="3000" data-speed="2000">3000</div>
+                                <!-- <div class="operator">Farmers</div> -->
+                            </div>
+                            <span class="medium">Farmers</span>
+                        </div>
+                        <div class="fun-fact">
+                            <div class="counter">
+                                <div style="color: #1f4e3d;" class="timer" data-to="100" data-speed="2000">100</div>
+                                <!-- <div class="operator">K</div> -->
+                            </div>
+                            <span class="medium">TOTs Trained</span>
+                        </div>
+
+                    </div>
+                    <div class="fun-fact-style-one mb-50">
+                        <div class="fun-fact">
+                            <div class="counter">
+                                <div class="timer" data-to="650" data-speed="2000">650</div>
+                                <!-- <div class="operator">Farmers</div> -->
+                            </div>
+                            <span class="medium">Champion Farmers</span>
+                        </div>
+                        <div class="fun-fact">
+                            <div class="counter">
+                                <div style="color: #1f4e3d;" class="timer" data-to="4" data-speed="2000">4</div>
+                                <!-- <div class="operator">K</div> -->
+                            </div>
+                            <span class="medium">Counties</span>
+                        </div>
+
+                    </div>
+
+                    <img src="{% static 'agrul/assets/img/banner/16.jpg' %}" alt="Thumb">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Choose Us -->
+
+<!-- Start Product 
+    ============================================= -->
+<div class="product-style-one-area default-padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h5 class="sub-title">Customers’ Choice</h5>
+                    <h2 class="title">Featured Products</h2>
+                    <div class="devider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <ul class="vt-products text-center columns-4">
+                {% for product in featured_products %}
+
+                <li class="product">
+                    {% include './../components/product_card.html' with product=product %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Product -->
+
+<!-- Start Shop Category
+    ============================================= -->
+<div class="shop-category-area relative">
+    <!-- Slider main container -->
+    <div class="product-offer-carousel">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+
+            <!-- Single Item -->
+            <div class="swiper-slide">
+                <div class="shop-category-style-one default-padding-top bg-cover"
+                    style="background-image: url(/static/agrul/assets/img/products/2.1.JPG);">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="product-offer-item">
+                                    <h4>Summer Offer</h4>
+                                    <h2 class="mb-25"><a href="index-3.html#">Seasonal Fruits</a></h2>
+                                    <p>
+                                        Sandperch flyingfish yellowfin cutthroat trout grouper whitebait horsefish
+                                        bullhead shark California smoothtongue, striped burrfish threadtail
+                                        saber-toothed blenny Red. Shortnose chimaera, carpetshark escolar.
+                                    </p>
+                                    <div class="counter-class" data-date="2023-5-24 00:00">
+                                        <!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
+                                        <div class="item-list">
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-days"></span> Days</h5>
+                                                </div>
+                                            </div>
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-hours"></span> Hours</h5>
+                                                </div>
+                                            </div>
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-minutes"></span> Minutes</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-theme mt-15 btn-md radius animation" href="{% url 'marketplace' %}"><i
+                                            class="fas fa-shopping-cart"></i> Purchase Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single item -->
+
+            <!-- Single Item -->
+            <div class="swiper-slide">
+                <div class="shop-category-style-one default-padding-top bg-cover"
+                    style="background-image: url(/static/agrul/assets/img/products/1.1.JPG);">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="product-offer-item">
+                                    <h4>Summer Offer</h4>
+                                    <h2 class="mb-25"><a href="index-3.html#">Organic Vegetables</a></h2>
+                                    <p>
+                                        Sandperch flyingfish yellowfin cutthroat trout grouper whitebait horsefish
+                                        bullhead shark California smoothtongue, striped burrfish threadtail
+                                        saber-toothed blenny Red. Shortnose chimaera, carpetshark escolar.
+                                    </p>
+                                    <div class="counter-class" data-date="2025-3-24 23:59:59">
+                                        <!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
+                                        <div class="item-list">
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-days"></span> Days</h5>
+                                                </div>
+                                            </div>
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-hours"></span> Hours</h5>
+                                                </div>
+                                            </div>
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-minutes"></span> Minutes</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-theme mt-15 btn-md radius animation" href="{% url 'marketplace' %}"><i
+                                            class="fas fa-shopping-cart"></i> Purchase Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single item -->
+
+            <!-- Single Item -->
+            <div class="swiper-slide">
+                <div class="shop-category-style-one default-padding-top bg-cover"
+                    style="background-image: url(/static/agrul/assets/img/products/3.1.jpg);">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="product-offer-item">
+                                    <h4>Summer Offer</h4>
+                                    <h2 class="mb-25"><a href="index-3.html#">Fresh & Testy Food</a></h2>
+                                    <p>
+                                        Sandperch flyingfish yellowfin cutthroat trout grouper whitebait horsefish
+                                        bullhead shark California smoothtongue, striped burrfish threadtail
+                                        saber-toothed blenny Red. Shortnose chimaera, carpetshark escolar.
+                                    </p>
+                                    <div class="counter-class" data-date="2025-3-24 23:59:59">
+                                        <!-- Date Formate Input yyyy-mm-dd hh:mm:ss -->
+                                        <div class="item-list">
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-days"></span> Days</h5>
+                                                </div>
+                                            </div>
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-hours"></span> Hours</h5>
+                                                </div>
+                                            </div>
+                                            <div class="counter-item">
+                                                <div class="item">
+                                                    <h5><span class="counter-minutes"></span> Minutes</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-theme mt-15 btn-md radius animation" href="{% url 'marketplace' %}"><i
+                                            class="fas fa-shopping-cart"></i> Purchase Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single item -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="product-offer-carousel-pagination"></div>
+
+    </div>
+</div>
+<!-- End Shop Category -->
+
+<!-- Start Testimonials 
+    ============================================= -->
+<div class="testimonials-area default-padding bg-gray"
+    style="background-image: url(/static/agrul/assets/img/shape/23.png);">
+    <div class="container">
+        <div class="row align-center">
+            <div class="col-lg-5">
+                <div class="testimonial-info text-center">
+                    <h4>Testimonial</h4>
+                    <div class="thumb">
+                        <img src="{% static 'agrul/assets/img/farmers/1.jpg' %}" alt="Image Not Found">
+                        <img src="{% static 'agrul/assets/img/farmers/4.jpg' %}" alt="Image Not Found">
+                        <img src="{% static 'agrul/assets/img/farmers/2.jpg' %}" alt="Image Not Found">
+                        <img src="{% static 'agrul/assets/img/farmers/3.jpg' %}" alt="Image Not Found">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="testimonial-carousel testimonial-style-one swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Single item -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-style-two">
+
+                                <div class="item">
+                                    <div class="content">
+                                        <p>
+                                            “Targetingconsultation discover apartments. ndulgence off under folly death
+                                            wrote cause her way spite. Plan upon yet way get cold spot its week. Almost
+                                            do am or limits hearts. Resolve parties but why she shewing. She sang know
+                                            now always remembering to the point.”
+                                        </p>
+                                    </div>
+                                    <div class="provider">
+                                        <div class="info">
+                                            <h4>Matthew J. Wyman</h4>
+                                            <span>Senior Consultant</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single item -->
+                        <!-- Single item -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-style-two">
+                                <div class="item">
+                                    <div class="content">
+                                        <p>
+                                            “Consultation discover apartments. ndulgence off under folly death wrote
+                                            cause her way spite. Plan upon yet way get cold spot its week. Almost do am
+                                            or limits hearts. Resolve parties but why she shewing. She sang know now
+                                            always remembering to the point.”
+                                        </p>
+                                    </div>
+                                    <div class="provider">
+                                        <div class="info">
+                                            <h4>Anthom Bu Spar</h4>
+                                            <span>Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single item -->
+                        <!-- Single item -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-style-two">
+                                <div class="item">
+                                    <div class="content">
+                                        <p>
+                                            “Business discover apartments. ndulgence off under folly death wrote cause
+                                            her way spite. Plan upon yet way get cold spot its week. Almost do am or
+                                            limits hearts. Resolve parties but why she shewing. She sang know now always
+                                            remembering to the point.”
+                                        </p>
+                                    </div>
+                                    <div class="provider">
+                                        <div class="info">
+                                            <h4>Rovine Wanjala</h4>
+                                            <span>Senior Developer</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single item -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Testimonials -->
+
+<!-- Start Gallery 
+    ============================================= -->
+<div class="gallery-style-one-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h5 class="sub-title">Awesome Gallery</h5>
+                    <h2 class="title">Gallery Of Our Products</h2>
+                    <div class="devider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container container-stage">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="carousel-stage-right carousel-style-one swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="gallery-style-one">
+                                <img src="{% static 'agrul/assets/img/gallery/2_1.jpg' %}" alt="Thumb">
+                                <div class="overlay">
+                                    <span>Fruit</span>
+                                    <h4><a href="project-details.html">Sweet Yellow Passion</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="gallery-style-one">
+                                <img src="{% static 'agrul/assets/img/gallery/7_1.jpg' %}" alt="Thumb">
+                                <div class="overlay">
+                                    <span>Knowledge Base</span>
+                                    <h4><a href="project-details.html">Farming manuals</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="gallery-style-one">
+                                <img src="{% static 'agrul/assets/img/gallery/3_1.jpg' %}" alt="Thumb">
+                                <div class="overlay">
+                                    <span>Farm Inputs</span>
+                                    <h4><a href="project-details.html">Seedlings</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="gallery-style-one">
+                                <img src="{% static 'agrul/assets/img/gallery/5_1.jpg' %}" alt="Thumb">
+                                <div class="overlay">
+                                    <span>Demonstration farm</span>
+                                    <h4><a href="project-details.html">Training</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="gallery-style-one">
+                                <img src="{% static 'agrul/assets/img/gallery/10_1.jpeg' %}" alt="Thumb">
+                                <div class="overlay">
+                                    <span>Products</span>
+                                    <h4><a href="project-details.html">Sweet Yellow Passion Product</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Gallery -->
+
+<!-- Start Contact Us 
+    ============================================= -->
+<div class="contact-area bg-gray default-padding" style="background-image: url(assets/img/shape/28.png);">
+    <div class="container">
+        <div class="row align-center">
+
+            <div class="col-tact-stye-one col-lg-7">
+                <div class="contact-form-style-one mb-md-50">
+                    <h5 class="sub-title">Have Questions?</h5>
+                    <h2 class="heading">Send us a Massage</h2>
+                    <form action="https://validthemes.live/themeforest/agrul/assets/mail/contact.php" method="POST"
+                        class="contact-form contact-form">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input class="form-control" id="name" name="name" placeholder="Name" type="text">
+                                    <span class="alert-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="email" name="email" placeholder="Email*"
+                                        type="email">
+                                    <span class="alert-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="phone" name="phone" placeholder="Phone" type="text">
+                                    <span class="alert-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group comments">
+                                    <textarea class="form-control" id="comments" name="comments"
+                                        placeholder="Tell Us About Project *"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="submit" name="submit" id="submit">
+                                    <i class="fa fa-paper-plane"></i> Get in Touch
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Alert Message -->
+                        <div class="col-lg-12 alert-notification">
+                            <div id="message" class="alert-msg"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-tact-stye-one col-lg-5 pl-60 pl-md-15 pl-xs-15">
+                <div class="contact-style-one-info">
+                    <h2>
+                        Contact
+                        <span>
+                            Information
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" preserveAspectRatio="none">
+                                <path
+                                    d="M14.4,111.6c0,0,202.9-33.7,471.2,0c0,0-194-8.9-397.3,24.7c0,0,141.9-5.9,309.2,0"
+                                    style="animation-play-state: running;"></path>
+                            </svg>
+                        </span>
+                    </h2>
+                    <p>
+                        Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why
+                        she shewing.
+                    </p>
+                    <ul>
+                        <li class="wow fadeInUp">
+                            <div class="icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Hotline</h5>
+                                <a href="tel:+254700000000">+254700000000</a>
+                            </div>
+                        </li>
+                        <li class="wow fadeInUp" data-wow-delay="300ms">
+                            <div class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info">
+                                <h5 class="title">Our Location</h5>
+                                <p>
+                                    E4impact Entreprenuership Center, Kenya Karen, <br> Ushirika Road, Nairobi, Kenya
+                                </p>
+                            </div>
+                        </li>
+                        <li class="wow fadeInUp" data-wow-delay="500ms">
+                            <div class="icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <div class="info">
+                                <h5 class="title">Official Email</h5>
+                                <a href="mailto:info@agrul.com.com">info@tundatamu.co.ke</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Contact -->
+
+<!-- Start events area -->
+{% if new_events|length > 0 %}
+<div class="gallery-style-one-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h5 class="sub-title">Upcoming Events</h5>
+                    <h2 class="title">Events</h2>
+                    <div class="devider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container container-stage">
+        <div class="row">
+            {% for event in new_events %}
+            <div class="col-xl-4 col-md-6 single-item">
+                {% include './../../components/event_card.html' with event=event upcoming=True %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- End events area -->
+
+<!-- Partners area -->
+<div class="gallery-style-one-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h5 class="sub-title">Who do we work with</h5>
+                    <h2 class="title">Parners</h2>
+                    <div class="devider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container container-stage">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="carousel-stage-right swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="">
+                                <a href="https://e4iaccelerator.org/" target="_blank" rel="noopener">
+                                    <img src="static\agrul\assets\img\partners\impact.png" width="200px">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+
+                            <div class="">
+                                <a href="http://www.jkuat.ac.ke/" target="_blank" rel="noopener">
+                                    <img src="static\agrul\assets\img\partners\jkuates.png" class="card-img-to" alt="...">
+                                </a>
+                            </div>
+                            
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="">
+                                <a href="https://www.embu.go.ke/" target="_blank" rel="noopener">
+                                    <img src="static\agrul\assets\img\partners\Embu.jpg" class="card-img-to" alt="...">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="">
+                                <a href="https://sotehub.com/" target="_blank" rel="noopener">
+                                    <img src="static\agrul\assets\img\partners\Sote-Hub-Logo-1024x553.jpg" height="50%"
+                                        class="card-img-to" alt="...">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="">
+                                <a href="https://lamu.go.ke/" target="_blank" rel="noopener">
+                                    <img src="static\agrul\assets\img\partners\Lamu.png" class="card-img-to" alt="...">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="">
+                                <a href="https://machakos.go.ke/" target="_blank" rel="noopener">
+                                    <img src="static\agrul\assets\img\partners\machakos.jpg" class="card-img-to"
+                                        alt="...">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="">
+                                <a href="https://kwalecountygov.com/kwale/" target="_blank" rel="noopener">
+                                    <img src="static\agrul\assets\img\partners\kwale.png" class="card-img-to" alt="...">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End of partners area -->
+{% endblock %}

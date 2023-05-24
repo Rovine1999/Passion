@@ -1,0 +1,65 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Events {% endblock %}
+
+{% block content %}
+
+<!-- Start Breadcrumb 
+    ============================================= -->
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Events</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Events</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blog-area blog-grid full-blog default-padding">
+    <div class="container">
+        {% with upcoming_events|length as upcoming_len %}
+        {% if upcoming_len > 0 %}
+        <div class="blog-item-box">
+            <h2>Upcoming Events ({{upcoming_len}}) </h2>
+            <div class="row">
+                <!-- Single group -->
+                {% for event in upcoming_events %}
+                <div class="col-xl-4 col-md-6 single-item">
+                    {% include './../../components/event_card.html' with event=event upcoming=True %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        {% with past_events|length as past_len %}
+        {% if past_len > 0 %}
+        <div class="blog-item-box">
+            <h2>Past Events ({{past_len}}) </h2>
+            <div class="row">
+                <!-- Single group -->
+                {% for event in past_events %}
+                <div class="col-xl-4 col-md-6 single-item">
+                    {% include './../../components/event_card.html' with event=event upcoming=False %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+    </div>
+</div>
+<!-- End Blog -->
+
+{% endblock %}

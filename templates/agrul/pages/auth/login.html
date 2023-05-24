@@ -1,0 +1,156 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block content %}
+
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Login</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Account Login</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-area default-padding" style="background-image: url(/static/agrul/assets/img/shape/28.png);">
+    <div class="container">
+        <div class="row align-center">
+
+            <div class="col-tact-stye-one col-lg-6 mb-md-50 offset-lg-3">
+                <div class="contact-form-style-one">
+                    <h5 class="sub-title">Sign In to your account</h5>
+                    <h2 class="heading">Account Login</h2>
+                    {% for msg in messages %}
+                    <div class="alert alert-{{msg.tags}}">
+                        {{ msg }}
+                    </div>
+                    {% endfor %}
+                    <form method="POST" class="contact-for">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="loginas">How do you want to login?</label>
+                                    <select type="text" class="" style="display: none"
+                                        placeholder="Login As" id="loginas">
+                                        <option data-display="Sign In as">Log in as</option>
+                                        <option value="f">Farmer</option>
+                                        <option value="en">Enumerator</option>
+                                        <option value="off">Offtaker</option>
+                                        <option value="sp">Service Provider</option>
+                                        <option value="a">Aggregator</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input class="form-control" id="username" name="username" placeholder="Username"
+                                        type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input class="form-control" id="password" name="password" placeholder="Password"
+                                        type="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="submit">
+                                    <i class="fa fa-sign-in me-2"></i> Sign In
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Alert Message -->
+                        <div class="col-lg-12 alert-notification">
+                            <div id="messag" class="alert-msg"></div>
+                        </div>
+                    </form>
+                    <p>
+                        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Contact -->
+
+<script>
+
+    const username_input = document.querySelector("#username")
+    // const username_label = document.querySelector("#username-label")
+    const loginas = document.querySelector("#loginas")
+
+    loginas.addEventListener('change', e => switchLabelAndInput(e.target.value))
+
+
+    function switchLabelAndInput(loginas_value) {
+        switch (loginas_value) {
+            case 'f':
+                username_input.disabled = false
+                username_input.placeholder = 'Enter Phone Number'
+                // username_label.innerText = 'Phone Number'
+                username_input.type = 'number'
+                break;
+
+            case 'en':
+                username_input.disabled = false
+                username_input.placeholder = 'Enter Phone Number'
+                // username_label.innerText = 'Phone Number'
+                username_input.type = 'number'
+                break;
+
+            case 'off':
+                username_input.disabled = false
+                username_input.placeholder = 'Enter Email'
+                // username_label.innerText = 'Email'
+                username_input.type = 'email'
+                break;
+
+            case 'sp':
+                username_input.disabled = false
+                username_input.placeholder = 'Enter Company Name'
+                // username_label.innerText = 'Company Name'
+                username_input.type = 'text'
+                break;
+
+            case 'a':
+                username_input.disabled = false
+                username_input.placeholder = 'Enter Mobile Number'
+                // username_label.innerText = 'Mobile Number'
+                break;
+
+            default:
+                username_input.placeholder = 'Select Login as'
+                // username_label.innerText = 'Select Login as'
+                username_input.disabled = true
+                username_input.type = 'number'
+                break;
+        }
+    }
+
+</script>
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('select').niceSelect();
+    });
+</script>
+{% endblock %}

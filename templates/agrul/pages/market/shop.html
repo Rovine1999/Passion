@@ -1,0 +1,95 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Marketplace {% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb-area shadow dark bg-cover text-center text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>Marketplace</h1>
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li>Shop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="validtheme-shop-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="vt-products columns-4">
+                    <!-- Single product -->
+                    {% for product in page_obj %}
+                    <li class="product">
+                        {% include './../../components/product_card.html' with product=product %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="row col-lg-10 offset-lg-1">
+            <div class="py-4 d-flex align-items-center justify-content-center gap-2">
+                <div class="border-0 py-2">
+                    <nav aria-label="Page navigation example py-2 flex-wrap">
+                        <ul class="pagination flex-wrap">
+                            {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'marketplace' %}?page={{page_obj.previous_page_number}}">
+                                    Previous
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
+                                    Previous
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% for page in pages %}
+                            {% if request.GET.page == page|stringformat:'i' %}
+                            <li class="page-item active">
+                                <a class="page-link" aria-current="page" href="javascript:void(0)">
+                                    {{page}}
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'marketplace' %}?page={{page}}">
+                                    {{page}}
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'marketplace' %}?page={{page_obj.next_page_number}}">
+                                    Next
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" tabindex="-1" href="javascript:void(0)" aria-disabled="true">
+                                    Next
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

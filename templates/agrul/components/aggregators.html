@@ -1,0 +1,55 @@
+<section class="py-5">
+    <h3 style="color: #131419 !important;">{{title}}</h3>
+    <div class="row mt-2">
+        {% for obj in objs %}
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card" style="border-radius: 10px;">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-center mb-2">
+                        <div class="my-avatar" style="--size: 60px">
+                            <img src="{% if obj.user.profile.profile_photo %} {{obj.user.profile.profile_photo.url}} {% endif %}"
+                                alt="">
+                        </div>
+                    </div>
+                    <p class="text-center fw-600 mb-2">
+                        {{obj.user.first_name}} {{obj.user.last_name}} 
+                    </p>
+                    {% if obj.farmer_group %}
+                    <p class="text-center mb-2 fs-5">
+                        {{obj.name}}
+                    </p>
+                    {% endif %}
+                    <div class="d-flex justify-content-center">
+                        {% if request.user.is_authenticated %}
+                        {% if obj.user in request.user.profile.friends.all %}
+                        <button
+                            class="btn btn-outline-primary px-4 mx-auto rounded rounded-pill d-flex align-items-center justify-content-center gap-2">
+                            <i class="fa fa-check"></i>
+                            <span>Already Interacting</span>
+                        </button>
+                        {% else %}
+                        <button
+                            class="btn btn-primary px-4 mx-auto rounded rounded-pill d-flex align-items-center justify-content-center gap-2" onclick="addFriend(this, '{{obj.user.id}}')">
+                            <i class="fa fa-user-plus"></i>
+                            <span>Add Interaction</span>
+                            <span id="loader"></span>
+                        </button>
+                        {% endif %}
+                        {% else %}
+                        <a href="{% url 'login' %}"
+                            class="btn btn-primary px-4 mx-auto rounded rounded-pill d-flex align-items-center justify-content-center gap-2">
+                            <i class="fa fa-login"></i>
+                            <span>Login</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-info">
+            <small>No Providers found Under this category</small>
+        </div>
+        {% endfor %}
+    </div>
+</section>

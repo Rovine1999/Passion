@@ -1,0 +1,14 @@
+<section class="py-2">
+    <h3 style="color: #131419 !important;">{{title}}</h3>
+    <div class="row mt-2">
+        {% for obj in objs %}
+        <div class="col-md-3 col-sm-6 mb-3">
+            {% include './provider_card.html' with provider=obj provider_type=provider_type %}
+        </div>
+        {% empty %}
+        <div class="alert alert-info">
+            <small>No Providers found Under this category</small>
+        </div>
+        {% endfor %}
+    </div>
+</section>

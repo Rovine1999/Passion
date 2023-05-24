@@ -1,0 +1,511 @@
+{% extends './base.html' %}
+{% block title %} Dashboard {% endblock %}
+
+{% block styles %}
+<style>
+    .widget-stats-content {
+        margin-left: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .widget-stats-container {
+            flex-direction: column;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .widget-stats-icon {
+            margin: auto !important;
+        }
+
+        .widget-stats-content {
+            margin-left: 0px !important;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>Dashboard</h1>
+    <p class="text-muted">
+        Welcome back, <span class="text-capitalize">{{request.user.first_name}}</span>
+    </p>
+    <div class="row my-4">
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-farmers' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">people</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill flex-center">
+                                <span class="widget-stats-title">Total Users</span>
+                                <span class="widget-stats-amount">{{users_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-demofarms' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">broken_image</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Demo Farms</span>
+                                <span class="widget-stats-amount">{{demofarms_total}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-nurseries' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">nature</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Nurseries</span>
+                                <span class="widget-stats-amount">{{nurseries_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-collection' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">emoji_transportation</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Collection Centers</span>
+                                <span class="widget-stats-amount">{{collectioncenters_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-farmergroups' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">diversity_2</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Farmer Groups</span>
+                                <span class="widget-stats-amount">{{farmergroups_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-aggregators' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">group</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Aggregators</span>
+                                <span class="widget-stats-amount">{{aggregators_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-offtakers' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">local_shipping</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Offtakers</span>
+                                <span class="widget-stats-amount">{{offtakers_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-enumerators' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">support_agent</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Enumerators</span>
+                                <span class="widget-stats-amount">{{enumerators_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-extensionservices' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">extension</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Extension Services</span>
+                                <span class="widget-stats-amount">{{extension_services_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-events' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">event</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Events</span>
+                                <span class="widget-stats-amount">{{events_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-posts' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">post_add</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Posts</span>
+                                <span class="widget-stats-amount">{{posts_total}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3 h-100">
+            <a href="{% url 'dashboard-resources-processors' %}" style="text-decoration: none;">
+
+                <div class="card widget widget-stats h-100">
+                    <div class="card-body">
+                        <div class="widget-stats-container d-flex">
+                            <div class="widget-stats-icon widget-stats-icon-primary">
+                                <i class="material-icons-outlined">memory</i>
+                            </div>
+                            <div class="widget-stats-content flex-fill">
+                                <span class="widget-stats-title">Processors</span>
+                                <span class="widget-stats-amount">{{processors}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div>
+        <h2 class="mb-4">Farmers</h2>
+        <div class="row my-4">
+
+            <div class="col-6 col-lg-3 mb-3 h-100">
+                <a href="{% url 'dashboard-farmers' %}" style="text-decoration: none;">
+                    <div class="card widget widget-stats h-100">
+                        <div class="card-body">
+                            <div class="widget-stats-container d-flex">
+                                <div class="widget-stats-icon widget-stats-icon-primary">
+                                    <i class="material-icons-outlined">agriculture</i>
+                                </div>
+                                <div class="widget-stats-content flex-fill">
+                                    <span class="widget-stats-title">
+                                        Total Farmers
+                                    </span>
+                                    <span class="widget-stats-amount">{{farmers_total}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-3 mb-3 h-100">
+                <a href="{% url 'dashboard-farmers' %}?gender=male" style="text-decoration: none;">
+                    <div class="card widget widget-stats h-100">
+                        <div class="card-body">
+                            <div class="widget-stats-container d-flex">
+                                <div class="widget-stats-icon widget-stats-icon-primary">
+                                    <i class="material-icons-outlined">male</i>
+                                </div>
+                                <div class="widget-stats-content flex-fill">
+                                    <span class="widget-stats-title">Total Male Farmers</span>
+                                    <span class="widget-stats-amount">{{male_farmers}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-3 mb-3 h-100">
+                <a href="{% url 'dashboard-farmers' %}?gender=female" style="text-decoration: none;">
+
+                    <div class="card widget widget-stats h-100">
+                        <div class="card-body">
+                            <div class="widget-stats-container d-flex">
+                                <div class="widget-stats-icon widget-stats-icon-primary">
+                                    <i class="material-icons-outlined">female</i>
+                                </div>
+                                <div class="widget-stats-content flex-fill">
+                                    <span class="widget-stats-title">Total Female Farmers</span>
+                                    <span class="widget-stats-amount">{{female_farmers}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card ">
+                <div class="card-body">
+                    <h2 class="mb-4">Statistics</h2>
+                    <canvas id="farmers_distribution" style="width:100%;max-width:400px" class="mx-auto"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card ">
+                <div class="card-body">
+                    <h2 class="mb-4">Enumerator Stats</h2>
+                    <div id="approved_enumerators_data" class="d-none" data-data="{{enumerator_stats}}"></div>
+                    <canvas id="approved_enumerators" style="width:100%;max-width:400px" class="mx-auto"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="mb-4">Farmer Groups</h2>
+                    <div id="farmer_groups_data" class="d-none" data-data="{{groups_data}}"></div>
+                    <canvas id="distribution_of_farmers_per_group" style="width:100%;max-width:800px"
+                        class="mx-auto"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="mb-4">Farmers Per County</h2>
+                    <div id="farmers_per_county" class="d-none" data-data="{{farmers_per_county}}"></div>
+                    <canvas id="distribution_of_farmers_per_county" style="width:100%;max-width:800px"
+                        class="mx-auto"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    function getData(element) {
+        const data = document.getElementById(element).dataset.data
+        return JSON.parse(data)
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js"></script>
+<!-- Chart js graphs -->
+<!-- Farmers Distribution -->
+<script>
+    let farmersLabels = ["Male", "Female"];
+    let farmersValues = [parseInt("{{male_farmers}}"), parseInt("{{female_farmers}}")];
+    const farmersChart = new Chart("farmers_distribution", {
+        type: "pie",
+        data: {
+            labels: farmersLabels,
+            datasets: [{
+                // backgroundColor: barColors,
+                data: farmersValues
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Farmers Distribution according to gender"
+                }
+            }
+        }
+    });
+</script>
+
+<!-- Farmers Distribution -->
+<script>
+    let enumeratorLabels = ["Approved", "UnApproved"];
+    const enumeratorsData = getData('approved_enumerators_data')
+    let enumaratorValues = [enumeratorsData?.approved ?? 0, enumeratorsData?.unapproved ?? 0];
+    const enumeratorChart = new Chart("approved_enumerators", {
+        type: "pie",
+        data: {
+            labels: enumeratorLabels,
+            datasets: [{
+                backgroundColor: ['#4caf50', '#36a2eb'],
+
+                data: enumaratorValues
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Farmers Distribution according to gender"
+                }
+            }
+        }
+    });
+</script>
+
+<!-- Farmer Groups data - To visualize the number of farmers in each group -->
+<script>
+    // const groups_data = JSON.parse("{{groups_data}}")
+    const groupsData = getData('farmer_groups_data')
+    let groupsLabels = groupsData.labels;
+    let groupsValues = groupsData.values;
+    const groupsChart = new Chart("distribution_of_farmers_per_group", {
+        type: "bar",
+        data: {
+            labels: groupsLabels,
+            datasets: [{
+                label: "Farmer Distribution",
+                axis: 'y',
+                // backgroundColor: barColors,
+                data: groupsValues
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Distribution of Farmers per Group"
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+<!-- Farmers distribution data - To visualize the number of farmers in each county -->
+<script>
+    // const groups_data = JSON.parse("{{groups_data}}")
+    const countiesData = getData('farmers_per_county')
+    let countiesLabels = countiesData.labels;
+    let countiesValues = countiesData.values;
+    let countiesColors = countiesData.colors;
+    const countiesChart = new Chart("distribution_of_farmers_per_county", {
+        type: "bar",
+        data: {
+            labels: countiesLabels,
+            datasets: [{
+                label: "Farmer Distribution",
+                axis: 'y',
+                backgroundColor: countiesColors,
+                data: countiesValues
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Distribution of Farmers per County"
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+{% endblock %}

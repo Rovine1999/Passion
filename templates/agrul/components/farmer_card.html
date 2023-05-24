@@ -1,0 +1,49 @@
+<div class="card h-100" style="border-radius: 10px;">
+    <div class="card-body">
+        <div class="farmer-style-one-item">
+            <div class="thumb" style="height: 200px; background-color: gray;">
+                {% if farmer.user.profile.profile_photo %}
+                <img src="{{farmer.user.profile.profile_photo.url}}" class="mx-auto d-block" style="max-height: 100%;"
+                    alt="{{farmer.get_full_name}}">
+                {% endif %}
+                <div class="social">
+                    <i class="fas fa-share-alt"></i>
+                    <ul>
+
+                        {% if request.user.is_authenticated %}
+                        {% if farmer.user in request.user.profile.friends.all %}
+                        <li class="twitter">
+                            <a href="">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="facebook" onclick="addFriend(this, '{{farmer.user.id}}')">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                            <span class="loader"></span>
+                        </li>
+                        {% endif %}
+                        {% else %}
+                        <li class="twitter">
+                            <a href="{% url 'login' %}">
+                                <i class="fa fa-login"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="info mt-3">
+                <!-- <span>Farmer of tomatoes</span> -->
+                {% if farmer.farmer_group %}
+                <span>
+                    {{farmer.farmer_group.title}} Group
+                </span>
+                {% endif %}
+                <h4><a href="team.html#">{{farmer.user.get_full_name}}</a></h4>
+            </div>
+        </div>
+    </div>
+</div>

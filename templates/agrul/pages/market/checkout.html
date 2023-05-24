@@ -1,0 +1,97 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Checkout {% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb-area shadow dark bg-cover text-center text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>Checkout</h1>
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li>Shop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="validtheme-shop-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                <div class="card shadow-lg border-0 px-2 py-4">
+                    <h2 class="mb-4">Checkout</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price (KES)</th>
+                                    <th>Qty</th>
+                                    <th>Sub total (KES)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle" id="checkout-cart">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-end px-5 py-2">
+                        <h2 class="me-3">Total</h2>
+                        <h3> KES <span id="checkout-total"></span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-lg border-0 px-4 py-4">
+                    <h3 class="mb-3">Cart Items</h3>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <h5>Total Items</h5>
+                        </div>
+                        <div class="col-6">
+                            <h5><span id="checkout-count"></span></h5>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <h5>Cart Total</h5>
+                        </div>
+                        <div class="col-6">
+                            <h5>KES <span id="checkout-total_2"></span></h5>
+                        </div>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                    {% url 'place_order' as order_url %}
+                    <div class="py-2">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                +254
+                            </span>
+                            <input type="number" minlength="9" maxlength="9" class="form-control shadow-none py-2"
+                                id="checkout_phone_number" value="{{request.user.profile.phone_number}}"
+                                placeholder="70...">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="placeOrder('{{order_url}}')">
+                        Place Order
+                    </button>
+                    {% else %}
+                    <div class="alert alert-info">
+                        You must be logged in to place an order
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

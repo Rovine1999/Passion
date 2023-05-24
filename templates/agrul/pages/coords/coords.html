@@ -1,0 +1,85 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Location Coordinates {% endblock %}
+
+{% block content %}
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Coordinates</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Coordinates</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="error-page-area default-padding text-center">
+    <div class="container">
+        <button class="btn btn-success px-5" id="get-coords">Get Coordinates</button>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Lat/Long</th>
+                        <th scope="col">Coordinates</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Latitude</td>
+                        <td id="lat">-</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="copyToClipboard('#lat')">Copy</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Longitude</td>
+                        <td id="long">-</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="copyToClipboard('#long')">Copy</button>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#get-coords').click(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        });
+
+        function showPosition(position) {
+            $('#lat').html(position.coords.latitude);
+            $('#long').html(position.coords.longitude);
+        }
+    });
+
+    // Function to copy coordinates to clipboard
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        alert("Copied to clipboard")
+    }
+</script>
+{% endblock %}

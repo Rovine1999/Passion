@@ -1,0 +1,40 @@
+{% load customtags %}
+{% if request.user.enumerator %}
+{% with request.user.enumerator as enumerator %}
+
+<div class="card shadow p-2 p-md-4 border-0 mb-5" style="border-radius: 20px;">
+    <h3 class="mb-3">Your Enumerator Information</h3>
+    <div class="mb-3">
+        <p>
+            Your enumerator CODE is <strong>{{ enumerator.code }}</strong>
+        </p>
+    </div>
+    <h3 class="mb-3">Farmer Group Codes</h3>
+    {% for county in 'counties'|get_model_entries %}
+    <div class="card border-0 shadow shadow-sm p-2 mb-3">
+        <h4 class="mb-3">{{ county.name }} County</h4>
+        <p class="mb-3">
+            County Number: <strong class="ms-3">{{ county.county_number }}</strong>
+        </p>
+        <ul class="list-group list-group-flush">
+            {% for group in county.farmer_groups.all %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{group.title}}
+                    </div>
+                    <div class="col-md-6">
+                        <strong>
+                            {{group.code}}
+                        </strong>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+
+{% endwith %}
+{% endif %}

@@ -1,0 +1,64 @@
+{% load customtags %}
+
+<div class="app-sidebar">
+    <div class="logo">
+        <a href="{% url 'home' %}" class="logo-icon"><span class="logo-text">Passion</span></a>
+        <div class="sidebar-user-switcher user-activity-online">
+            <a href="{% url 'account_profile' %}">
+                {% if request.user.profile.profile_photo %}
+                <img src="{{request.user.profile.profile_photo.url}}">
+                {% else %}
+                <div class="avatar">
+                    A
+                </div>
+                {% endif %}
+                <span class="activity-indicator"></span>
+                <span class="user-info-text">{{request.user.first_name}}<br><span
+                        class="user-state-info">{{request.user.username}}</span></span>
+            </a>
+        </div>
+    </div>
+    <div class="app-menu">
+        <ul class="accordion-menu">
+            <li class="sidebar-title">
+                App
+            </li>
+            <li>
+                <a href="{% url 'home' %}">
+                    <i class="material-icons-two-tone">home</i>
+                    Go Home
+                </a>
+            </li>
+            {% with 'dashboard'|get_full_url as url %}
+            <li class="{% if request.path == url %}active-page{% endif %}">
+                <a href="{% url 'dashboard' %}"
+                    class="{% if request.path == url %}active{% endif %}">
+                    <i class="material-icons-two-tone">dashboard</i>
+                    Dashboard
+                </a>
+            </li>
+            {% endwith %}
+
+            <li class="">
+                <a href="/admin" target="_blank">
+                    <i class="material-icons-two-tone">dashboard</i>
+                    Django Admin
+                </a>
+            </li>
+
+            <li class="sidebar-title">
+                App
+            </li>
+            {% for link in "sidebar_links"|admin_sidebar_urls %}
+            <li class="{% if request.path == link.full_url %}active-page{% endif %}">
+                <a href="{{link.full_url}}"
+                    class="{% if request.path == link.full_url %}active{% endif %}">
+                    <i class="material-icons-two-tone">{{link.icon}}</i>
+                    {{link.label}}
+                </a>
+            </li>
+            {% endfor %}
+            
+        </ul>
+    </div>
+</div>

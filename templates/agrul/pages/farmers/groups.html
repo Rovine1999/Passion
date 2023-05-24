@@ -1,0 +1,81 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Farmer Groups {% endblock %}
+
+{% block content %}
+
+<!-- Start Breadcrumb 
+    ============================================= -->
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Farmer Groups</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Farmer Groups</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="blog-area blog-grid full-blog default-padding">
+    <div class="container">
+        <div class="blog-item-box">
+            <div class="row">
+                <!-- Single group -->
+                {% for group in groups %}
+                <div class="col-xl-4 col-md-6 single-item">
+                    <div class="card" style="border-radius: 10px;">
+                        <div class="card-body">
+                            <div class="blog-style-one">
+                                <div class="thumb" style="height: 300px; background: gray;">
+                                    {% if group.image %}
+                                    <a href="javascript:void(0)">
+                                        <img src="{{group.image.url}}" alt="{{group.title}}"
+                                            style="max-height: 100%; object-fit: fill;">
+                                    </a>
+                                    {% endif %}
+                                    <div class="date"><strong>18</strong> <span>Apr, 22</span></div>
+                                </div>
+                                <div class="info">
+                                    <div class="meta">
+                                        <ul>
+                                            <li>
+                                                <a href="javascript:void(0)"><i class="fas fa-users"></i>
+                                                    {{group.farmer_set|length}}
+                                                    Farmers
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title">
+                                        <a href="javascript:void(0)">
+                                            {{group.title}}
+                                        </a>
+                                    </h3>
+                                    <button class="btn btn-primary btn-sm mt-2" data-bs-target="#preview-modal"
+                                        data-bs-toggle="modal" data-bs-title="{{group.title}}"
+                                        data-bs-content="{{group.description}}">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End Blog -->
+
+{% endblock %}

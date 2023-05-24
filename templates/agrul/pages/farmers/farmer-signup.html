@@ -1,0 +1,243 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block content %}
+<!-- Start Breadcrumb 
+    ============================================= -->
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Create Your Farmer Account Today</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Farmer Sign Up</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb -->
+
+<!-- Start Contact Us 
+    ============================================= -->
+<div class="contact-area default-padding" style="background-image: url(/static/agrul/assets/img/shape/28.png);">
+    <div class="container">
+        <div class="row align-center">
+
+            <div class="col-tact-stye-one col-lg-8 mb-md-50 offset-lg-2">
+                <div class="contact-form-style-one">
+                    <h5 class="sub-title">Farmer Account Creation</h5>
+                    <h2 class="heading">Sign Up as a Farmer</h2>
+                    {% for msg in messages %}
+                    <div class="alert alert-{{msg.tags}}">
+                        {{ msg }}
+                    </div>
+                    {% endfor %}
+                    <form method="POST" class="contact-for" id="farmer-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Personal Information</h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <input required type="text" class="form-control" placeholder="First Name"
+                                    name="user.first_name">
+                            </div>
+                            <div class="col-lg-6">
+                                <input required type="text" class="form-control" placeholder="Last Name"
+                                    name="user.last_name">
+                            </div>
+                            <div class="col-lg-6">
+                                <select name="user.profile.county" id="county" required class="" style="display: none;">
+                                    <option data-display="Select County">County</option>
+                                    {% for county in 'counties'|counties %}
+                                    <option value="{{county.id}}" class="text-capitalize">{{county.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4>Profile Information</h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="text" class="form-control" placeholder="Address"
+                                        name="user.profile.address">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="text" id="sub_county" class="form-control"
+                                        placeholder="Sub County" name="sub_county">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text py-2">
+                                            +254
+                                        </span>
+                                        <input required type="number" maxlength="9" minlength="9"
+                                            class="form-control mb-0" placeholder="700000000" id="phone_number"
+                                            name="user.profile.phone_number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="number" class="form-control" placeholder="Year of Birth"
+                                        name="user.profile.year_of_birth">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <Select required type="text" style="display: none;" placeholder="Gender"
+                                        name="user.profile.gender">
+                                        <option data-display="Select Gender">Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </Select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="file" class="form-control" placeholder="Profile photo"
+                                        name="user.profile.profile_photo">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4>More Information</h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="text" class="form-control" placeholder="Landmark"
+                                        name="landmark">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="text" class="form-control" placeholder="Enumerator Code"
+                                        name="enumerator_code">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="text" class="form-control" placeholder="Farmer Group Code"
+                                        name="farmer_group_code">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="text" class="form-control" placeholder="Selling Place"
+                                        name="selling_place">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="number" step="0.001" class="form-control"
+                                        placeholder="Size of Land" name="acreage">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4>Security</h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="password" class="form-control" placeholder="Password"
+                                        name="user.password">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input required type="password" class="form-control" placeholder="Confirm password"
+                                        name="password2">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <!-- Agree to terms and conditions -->
+                                <div class="d-flex align-items-center gap-2">
+                                    <input required type="checkbox" class="m-0 p-0" id="customCheck1">
+                                    <label class="m-0 p-0" for="customCheck1">I agree to the <a href="{% url 'tcs' %}">Terms
+                                            of Service</a> & <a href="{% url 'tcs' %}">Privacy Policy</a></label>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div id="msgSubmit" class="py-2"></div>
+                                <div id="msgSubmitErrors" class="py-2"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="submit">
+                                    <i class="fa fa-user-plus me-2"></i> Create Account
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Contact -->
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('select').niceSelect();
+    });
+</script>
+<script>
+    $("#farmer-form").on("submit", e => {
+        e.preventDefault()
+        postFarmer('farmer-form')
+    })
+
+    const postFarmer = (form_id) => {
+        const loc = window.location
+        const url = `${loc.protocol}//${loc.host}/api/farmers/`
+
+        const formdata = new FormData(document.getElementById(form_id))
+        formdata.append('user.username', $(`#${form_id} #phone_number`).val())
+        formdata.append('county', $(`#${form_id} #county`).val())
+
+        toastr.options = {
+            positionClass: "toast-bottom-center",
+            progressBar: true,
+            timeOut: 10000
+        }
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+
+        $("#msgSubmitErrors").html("")
+        $("#msgSubmit").html(spinner())
+        axios.post(url, formdata, { headers }).then((response) => {
+            const data = response.data;
+            const loc = window.location
+            const login_url = `${loc.protocol}//${loc.host}/login/`
+            window.location.href = login_url
+            toastr.info('Account Created Successfully')
+            $("#msgSubmit").html(`<div class="alert alert-success">Account Created Successfully. You can now login to continue using the platform.</div>`)
+        }).catch((error) => {
+            console.log(error.response.data)
+            toastr.error(`Error - ${error.message}`)
+            $("#msgSubmit").html(`<div class="alert alert-danger">${error.message}</div>`)
+            if (typeof error?.response?.data === 'object') {
+                const error_data = error.response.data
+                if (error_data?.user?.username) {
+                    toastr.info('Your Phone number seems to be already in the system. Change it.')
+                }
+                displayToastrErrors(error_data)
+            }
+        });
+    };
+</script>
+{% endblock %}

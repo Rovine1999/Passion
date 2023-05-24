@@ -1,0 +1,151 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Farmers {% endblock %}
+
+{% block content %}
+<!-- Start Breadcrumb 
+    ============================================= -->
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Farm Members</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Farmer</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb -->
+
+<!-- Start Farmer 
+    ============================================= -->
+<div class="farmer-area default-padding bottom-less">
+    <div class="container">
+        <div class="row col-lg-10 offset-lg-1">
+            <div class="py-4 d-flex align-items-center gap-2">
+                {% if request.GET.page %}
+                <p class="m-0 p-0">Showing page {{request.GET.page}} of {{page_count}}</p>
+                {% else %}
+                <p class="m-0 p-0">Showing page 1 of {{page_count}}</p>
+                {% endif %}
+                <hr class="vr py-0 m-0" style="height: 30px;">
+                <p class="m-0 p-0">
+                    {{page_obj|length}} of {{farmers_total}} Farmers
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="row">
+                    {% for farmer in page_obj %}
+                    <div class="col-lg-4 farmer-stye-one">
+                        {% include './../../components/farmer_card.html' with farmer=farmer %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="row col-lg-10 offset-lg-1">
+            <div class="py-4 d-flex align-items-center gap-2">
+                <div class="border-0 py-2">
+                    <nav aria-label="Page navigation example py-2 flex-wrap">
+                        <ul class="pagination flex-wrap">
+                            {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'farmers' %}?page={{page_obj.previous_page_number}}">
+                                    Previous
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
+                                    Previous
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% for page in pages %}
+                            {% if request.GET.page == page|stringformat:'i' %}
+                            <li class="page-item active">
+                                <a class="page-link" aria-current="page" href="javascript:void(0)">
+                                    {{page}}
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'farmers' %}?page={{page}}">
+                                    {{page}}
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'farmers' %}?page={{page_obj.next_page_number}}">
+                                    Next
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" tabindex="-1" href="javascript:void(0)" aria-disabled="true">
+                                    Next
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const spinner_ = () => {
+        return `
+            <div class="spinner-border ml-sm" role="status" aria-hidden="true"></div>
+		`
+    }
+
+    const addFriend = (event, user_id) => {
+        const loc = window.location
+        const url = `${loc.protocol}//${loc.host}/interact/api/add-friend/`
+
+        const formdata = new FormData()
+        formdata.append('user_id', user_id)
+
+        toastr.options = {
+            positionClass: "toast-bottom-center",
+            progressBar: true,
+            timeOut: 10000
+        }
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+        
+        const loader = event.children[1]
+        loader.innerHTML = spinner_()
+
+        axios.post(url, formdata, { headers }).then((response) => {
+            const data = response.data;
+            const loc = window.location
+            toastr.info('Farmer added as friend. You can now start interacting in interact page.')
+            loc.reload()
+        }).catch((error) => {
+            toastr.error(`Error - ${error.message}`)
+        });
+    };
+</script>
+{% endblock %}

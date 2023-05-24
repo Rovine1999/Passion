@@ -1,0 +1,24 @@
+{% extends './../.../../base.html' %}
+{% load static %}
+
+{% block title %} Market Place - Account | order#{{order.id}} {% endblock %}
+
+{% block meta %}
+
+<div class="bg-dark header-container d-flex justify-content-center align-items-center market-banner"
+    style="height: 300px;">
+    <div class="">
+        <h1 class="text-center text-white">Order #{{order.id}}</h1>
+        <p class="text-center text-white">
+            Payment outcome
+        </p>
+    </div>
+</div>
+<div class="container py-5">
+    <div class="card py-5 d-flex justify-content-center align-items-center shadow border-0">
+        <div class="alert alert-danger">
+            Payment failed or was cancelled!.
+        </div>
+    </div>
+</div>
+{% endblock %}
