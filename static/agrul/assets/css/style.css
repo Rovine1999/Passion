@@ -6026,7 +6026,7 @@ li.project-feature-list h4 {
 
 .product-features-style-one {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 30px;
 	grid-row-gap: 70px;
 	position: relative;
@@ -6045,6 +6045,8 @@ li.project-feature-list h4 {
 }
 
 .product-feature-item .thumb {
+	background-color: #0077B5;
+	border-radius: 10%;
 	margin: auto auto 20px;
 	position: relative;
 	z-index: 1;
@@ -6058,7 +6060,7 @@ li.project-feature-list h4 {
 	height: 150px;
 	width: 150px;
 	transform: translateX(-50%);
-	background: url(../img/shape/39.png);
+	/* background: url(../img/shape/39.png); */
 	z-index: -1;
 	border-radius: 50%;
 	background-size: contain;
