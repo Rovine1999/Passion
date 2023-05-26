@@ -12,10 +12,11 @@
                 <!-- Single Itme -->
                 <div class="col-lg-4 col-md-6 item">
                     <div class="footer-item about">
-                        <img class="logo" src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Logo">
+                        <img class="logo" src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}"
+                            alt="Logo">
                         <p>
-                            Happen active county. Winding morning ambition shyness evident to poor. Because elderly new
-                            to the point to main success.
+                            Our online marketplace for sweet yellow passion is committed to creating a sustainable and
+                            inclusive value chain that benefits all stakeholders
                         </p>
                         <form action="index-3.html#">
                             <input type="email" placeholder="Your Email" class="form-control" name="email">
@@ -31,22 +32,20 @@
                         <h4 class="widget-title">Explore</h4>
                         <ul>
                             <li>
-                                <a href="about-us.html">About Us</a>
+                                <a href="{% url 'aboutus' %}">About Us</a>
                             </li>
                             <li>
-                                <a href="team.html">Marketplace</a>
+                                <a href="{% url 'marketplace' %}">Marketplace</a>
                             </li>
                             <li>
-                                <a href="blog-single-with-sidebar.html">News & Events</a>
+                                <a href="{% url 'events' %}">Events</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{% url 'knowledgebase' %}">Resource center</a>
                             </li>
                             <li>
-                                <a href="services.html">Services Providers</a>
-                            </li>
-                            <li>
-                                <a href="contact-us.html">Resource center</a>
-                            </li>
-                            <li>
-                                <a href="team-details.html">Contac Us</a>
+                                <a href="{% url 'contactus' %}">Contac Us</a>
                             </li>
                         </ul>
                     </div>
@@ -56,7 +55,7 @@
                 <!-- Single Itme -->
                 <div class="col-lg-3 col-md-6 item">
                     <div class="footer-item recent-post">
-                        <h4 class="widget-title">Recent Posts</h4>
+                        <h4 class="widget-title">Recent Events</h4>
                         <ul>
                             {% for event in new_events|slice:":3" %}
                             <li>
@@ -67,9 +66,10 @@
                                 </div>
                                 <div class="info">
                                     {% with event.date|tokenize_date as event_date_data %}
-                                        <div class="meta-title">
-                                            <span class="post-date">{{event_date_data.day}} {{event_date_data.month}}, {{event_date_data.year}}</span>
-                                        </div>
+                                    <div class="meta-title">
+                                        <span class="post-date">{{event_date_data.day}} {{event_date_data.month}},
+                                            {{event_date_data.year}}</span>
+                                    </div>
                                     {% endwith %}
                                     <h5>
                                         <a href="#">{{event.title}}</a>
@@ -314,7 +314,7 @@
 </script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialize the carousel
         var swiper = new Swiper('.carousel-stage-right', {
             // Set the desired options for the carousel
