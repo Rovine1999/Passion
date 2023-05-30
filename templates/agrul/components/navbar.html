@@ -28,7 +28,8 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" class="logo" alt="Logo" style="max-width: 100px;">
+                    <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" class="logo"
+                        alt="Logo" style="max-width: 100px;">
                 </a>
             </div>
             <!-- End Header Navigation -->
@@ -36,7 +37,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
 
-                <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Logo" style="max-width: 100px;">
+                <img src="{% static 'agrul/assets/img/thumb/logo_giz-removebg-preview.png' %}" alt="Logo"
+                    style="max-width: 100px;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                     <i class="fa fa-times"></i>
                 </button>
@@ -129,9 +131,10 @@
                             <ul class="dropdown-menu cart-list">
                                 <div id="navbar-cart"></div>
                                 <li class="total">
-                                    <span class="pull-right"><strong>Total</strong>Kes: <span id="navbar-total"></span></span>
-                                    <a href="javascript:void(0)" class="btn btn-default btn-cart">Cart</a>
-                                    <a href="javascript:void(0)" class="btn btn-default btn-cart">Checkout</a>
+                                    <span class="pull-right"><strong>Total</strong>Kes: <span
+                                            id="navbar-total"></span></span>
+                                    <!-- <a href="javascript:void(0)" class="btn btn-default btn-cart">Cart</a> -->
+                                    <a href="{% url 'checkout' %}" class="btn btn-default btn-cart">Checkout</a>
                                 </li>
                             </ul>
                         </li>
@@ -166,7 +169,8 @@
                                 <li>
                                     <div class="content">
                                         <p>Address</p>
-                                        <strong>E4impact Entreprenuership Center, Kenya Karen, <br> Ushirika Road, Nairobi, Kenya</strong>
+                                        <strong>E4impact Entreprenuership Center, Kenya Karen, <br> Ushirika Road,
+                                            Nairobi, Kenya</strong>
                                     </div>
                                 </li>
                                 <li>

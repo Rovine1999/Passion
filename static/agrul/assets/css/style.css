@@ -5499,10 +5499,17 @@ ul.counter-list li:nth-child(2) {
 }
 
 .testimonial-info img {
-	border-radius: 44%;
+	--img-size: 100px;
+	border-radius: 50%;
 	position: absolute;
-	height: 100px;
+	height: var(--img-size) !important;
+	min-height: var(--img-size) !important;
+	max-height: var(--img-size) !important;
+	width: var(--img-size) !important;
+	min-width: var(--img-size) !important;
+	max-width: var(--img-size);
 	background: var(--white);
+	aspect-ratio: 16/9;
 	padding: 2px;
 	box-shadow: 0 25px 70px rgb(0 0 0 / 7%);
 }

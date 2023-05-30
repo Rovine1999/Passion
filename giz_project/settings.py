@@ -113,13 +113,13 @@ else:
     }
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'mail.gizpassion.com'
+EMAIL_HOST = 'mail.tundatamu.co.ke'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'noreply@gizpassion.com'
-DEFAULT_FROM_EMAIL = 'Tunda Tamu <noreply@gizpassion.com>'
+EMAIL_HOST_USER = 'noreply@tundatamu.co.ke'
+DEFAULT_FROM_EMAIL = 'Tunda Tamu <noreply@tundatamu.co.ke>'
 EMAIL_HOST_PASSWORD = '?}n@*43g8DBH'
 
-ADMIN_EMAILS = ["rovinewanjala99@gmail.com"]
+ADMIN_EMAILS = ["rovinewanjala99@gmail.com", "contact@tundatamu.co.ke"]
 
 
 # CORS settings

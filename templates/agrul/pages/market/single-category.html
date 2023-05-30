@@ -1,0 +1,82 @@
+{% extends './../../base.html' %}
+{% load customtags %}
+
+{% block title %} Categories | {{category.name}} {% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb-area shadow dark bg-cover text-center text-light"
+    style="background-image: url(/static/agrul/assets/img/banner/25_1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="text-capitalize">{{category.name}}</h1>
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li>{{category.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="validtheme-shop-area default-padding">
+    <div class="container-fluid mb-5">
+        <div class="all-product-grid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-top-dt">
+                            <div class="product-left-title">
+                                <h2>{{category.name}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 py-4">
+                        <div class="d-flex gap-3">
+                            {% if request.GET.county %}
+                            <a href="{{request.build_absolute_uri|update_county_param:'all'}}"
+                                class="county-card {% if request.GET.county == 'all' %} active {% endif %}">
+                                <h3>All Counties</h3>
+                            </a>
+                            {% else %}
+                            <a href="{{request.build_absolute_uri|update_county_param:'all'}}"
+                                class="county-card active">
+                                <h3>All Counties</h3>
+                            </a>
+                            {% endif %}
+                            {% for county in 'counties'|counties %}
+                            <a href="{{request.build_absolute_uri|update_county_param:county.id}}"
+                                class="county-card text-capitalize {% if request.GET.county == county.id|stringformat:'i' %} active {% endif %}">
+                                <h3>{{county.name}}</h3>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="product-list-view">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="vt-products columns-4">
+                                {% for product in products %}
+                                <li class="product">
+                                    {% include './../../components/product_card.html' with product=product %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% if products|length == 0 %}
+                        <div class="col-lg-12">
+                            <div class="alert alert-info">
+                                No Products found.
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

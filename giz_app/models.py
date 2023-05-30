@@ -411,3 +411,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.subject
+
+
+@receiver(post_save, sender=Contact)
+def send_contact_creation_email(sender, instance, created, **kwargs):
+    """
+    This signal listens for contact form creation and fires to send an email to the admin
+    """
+    if created:
+        send_custom_email('contact_email', instance, settings.ADMIN_EMAILS)
+        return True
+    

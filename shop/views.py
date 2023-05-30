@@ -120,7 +120,7 @@ def single_category(request, category_id, category_slug):
             "products": products,
             "category": category,
         }
-    return render(request, template_name='market/pages/single-category.html', context=context)
+    return render(request, template_name='agrul/pages/market/single-category.html', context=context)
 
 
 @attach_categories_to_request
@@ -134,7 +134,7 @@ def single_county(request, county_id, county_slug):
         'counties': County.objects.all(),
         'county': county,
     }
-    return render(request, template_name='marketplace/marketplace.html', context=context)
+    return render(request, template_name='agrul/pages/market/shop.html', context=context)
 
 
 def checkout(request):

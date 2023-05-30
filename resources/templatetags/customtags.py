@@ -8,7 +8,7 @@ from giz_app.models import Enumerator, Company
 from giz_app.serializers import CollectionCenterSerializer, UserSerializer
 from interact.models import UserChatGroup
 from resources.serializers import DemoFarmSerializer, NurserySerializer, FarmerGroupSerializer
-from mainapp.models import County
+from giz_app.models import Farmer, CollectionCenter, County
 from resources.models import Nursery, DemoFarm, FarmerGroup
 from django.urls import reverse
 
@@ -190,12 +190,11 @@ def providers(providers_):
 
 def get_providers():
     all_providers = [
-        {'label': 'Coperatives', 'value': 'Coperatives'},
+        {'label': 'Cooperatives', 'value': 'Coperatives'},
         {'label': 'Processors', 'value': 'Processors'},
-        {'label': 'Transport & Logistics', 'value': 'TransportLogistics'},
         {'label': 'Input Suppliers & Aggrovets', 'value': 'InputSuppliersAndAgrovets'},
-        {'label': 'Finance', 'value': 'FinancialProvider'},
-        {'label': 'Insurance', 'value': 'InsuranceProvider'},
+        {'label': 'Financial Providers', 'value': 'FinancialProvider'},
+        {'label': 'Insurance Providers', 'value': 'InsuranceProvider'},
         {'label': 'County Government', 'value': 'CountyGovernment'},
     ]
     return all_providers
@@ -221,3 +220,12 @@ def multiply(a, b):
     result = float(a) * float(b)
     return "{:.2f}".format(result)
 
+
+@register.simple_tag
+def quick_stats():
+    return {
+        "farmers": Farmer.objects.count(),
+        "demo_farms": DemoFarm.objects.count(),
+        "collection_centers": CollectionCenter.objects.count(),
+        "counties": County.objects.count(),
+    }

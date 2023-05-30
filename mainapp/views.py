@@ -164,7 +164,7 @@ def subscribe(request):
         form = SubscriptionForm(request.POST)
         if form.is_valid():
             subscriber = form.save()
-            send_subscription_confirmation_email(subscriber)
+            send_custom_email('subscription_confirmation', subscriber, settings.ADMIN_EMAILS + [subscriber.email])
             messages.info(request, 'Thank you for subscribing to our mailing list')
             return redirect(request.META.get('HTTP_REFERER'))
     else:

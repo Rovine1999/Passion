@@ -195,7 +195,7 @@ class Knowledge_base(models.Model):
 
     created_on = models.DateTimeField(auto_created=True, auto_now_add=True)
     updated_on = models.DateTimeField(auto_created=True, auto_now=True)
-
+ 
     class Meta:
         verbose_name_plural = 'Knowledge Base'
 

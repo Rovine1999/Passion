@@ -22,24 +22,32 @@
         color: white;
     }
 </style>
-
-<div class="bg-dark header-container d-flex justify-content-center align-items-center" style="height: 250px;">
-    <div class="">
-        <h1 class="text-center text-white">Knowledge Base</h1>
-        <p class="text-center text-white">
-            <!-- Our forums -->
-        </p>
-        <form action="" class="mt-3">
-            <div class="input-group input-group-lg">
-                <input type="text" class="form-control shadow-none bg-dark custom-search" name="query"
-                    placeholder="Enter a Keyword">
-                <button class="btn btn-outline-primary border-white text-white">
-                    <i class="fa fa-search"></i>
-                </button>
+<div class="breadcrumb-area text-center shadow dark bg-fixed text-light"
+    style="background-image: url(/static/agrul/assets/img/products/1.1.JPG);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Knowledge Base</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Knowledge Base</li>
+                        <form action="" class="mt-3">
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control shadow-none bg-dark custom-search" name="query"
+                                    placeholder="Enter a Keyword">
+                                <button class="btn btn-outline-primary border-white text-white">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </ol>
+                </nav>
             </div>
-        </form>
+        </div>
     </div>
 </div>
+
 <div class="bg-white">
     <div class="container py-5">
         <div>
