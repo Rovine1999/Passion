@@ -190,9 +190,9 @@ def providers(providers_):
 
 def get_providers():
     all_providers = [
-        {'label': 'Cooperatives', 'value': 'Coperatives'},
+        # {'label': 'Cooperatives', 'value': 'Coperatives'},
         {'label': 'Processors', 'value': 'Processors'},
-        {'label': 'Input Suppliers & Aggrovets', 'value': 'InputSuppliersAndAgrovets'},
+        {'label': 'Input Suppliers', 'value': 'InputSuppliersAndAgrovets'},
         {'label': 'Financial Providers', 'value': 'FinancialProvider'},
         {'label': 'Insurance Providers', 'value': 'InsuranceProvider'},
         {'label': 'County Government', 'value': 'CountyGovernment'},

@@ -178,7 +178,7 @@ def upload_farmers(request):
                         "profile": {
                             "phone_number": data[3],
                             "gender": data[5],
-                            "year_of_birth": data[4],
+                            # "year_of_birth": data[4],
                             # "county": int(data[6]) if data[6].isdecimal() else None,
                             # "id_number": data[5]
                         },
@@ -189,8 +189,8 @@ def upload_farmers(request):
                     "acreage": data[9],
                     "enumerator_code": data[10],
                     "enumerator": enumerator,
-                    "farmer_number": data[13],
-                    "landmark": data[14],
+                    # "farmer_number": data[13],
+                    # "landmark": data[14],
                     "selling_place": data[11],
                     "farmer_group_code": data[12],
                 }
