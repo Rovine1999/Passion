@@ -141,7 +141,7 @@
                     <div class="row align-center">
                         <div class="col-lg-10 offset-lg-1">
                             <div class="content">
-                                <h2> Sweet yellow passion  <br> fruit marketplace </h2>
+                                <h2> Sweet yellow passion <br> fruit marketplace </h2>
                                 <div class="button">
                                     <a class="btn btn-theme secondary btn-md radius animation"
                                         href="{% url 'marketplace' %}">Discover More</a>
@@ -479,7 +479,7 @@
         <div class="row align-center">
             <div class="col-lg-5">
                 <div class="testimonial-info text-center">
-                    <h4>Testimonial</h4>
+                    <h4>Testimonials</h4>
                     <div class="thumb">
                         <img src="{% static 'agrul/assets/img/farmers/1.1.jpg' %}" alt="Image Not Found">
                         <img src="{% static 'agrul/assets/img/farmers/2.2.jpg' %}" alt="Image Not Found">
@@ -591,6 +591,7 @@
 <!-- End Testimonials -->
 
 <!-- Start events area -->
+{% events 'new_events' as new_events %}
 {% if new_events|length > 0 %}
 <div class="gallery-style-one-area default-padding">
     <div class="container">

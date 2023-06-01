@@ -177,22 +177,22 @@ def upload_farmers(request):
                         "username": data[2],
                         "profile": {
                             "phone_number": data[3],
-                            "gender": data[5],
+                            "gender": data[4],
                             # "year_of_birth": data[4],
                             # "county": int(data[6]) if data[6].isdecimal() else None,
                             # "id_number": data[5]
                         },
                     },
-                    "county_number": int(data[8]) if data[8].isdecimal() else None,
-                    "county_name": data[6],
-                    "sub_county": data[7],
-                    "acreage": data[9],
-                    "enumerator_code": data[10],
+                    "county_number": int(data[7]) if data[7].isdecimal() else None,
+                    "county_name": data[5],
+                    "sub_county": data[6],
+                    "acreage": data[8],
+                    # "enumerator_code": data[10],
                     "enumerator": enumerator,
                     # "farmer_number": data[13],
                     # "landmark": data[14],
-                    "selling_place": data[11],
-                    "farmer_group_code": data[12],
+                    "selling_place": data[9],
+                    "farmer_group_code": data[10],
                 }
                 entries.append(farmer)
 

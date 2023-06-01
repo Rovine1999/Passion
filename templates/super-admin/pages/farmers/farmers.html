@@ -131,21 +131,21 @@
                             <th class="custom-th">Phone NUmber</th>
                             <th class="custom-th">County</th>
                             <th class="custom-th">Acreage</th>
-                            <th class="custom-th">Enumerator Code</th>
-                            <th class="custom-th">Landmark</th>
+                            <th class="custom-th">Enumerator</th>
+                            <th class="custom-th">Group</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for farmer in page_obj %}
                         <tr>
-                            <td>{{farmer.farmer_number}}</td>
+                            <td>00{{farmer.id}}</td>
                             <td>{{farmer.user.first_name}}</td>
                             <td>{{farmer.user.last_name}}</td>
                             <td>{{farmer.user.profile.phone_number}}</td>
-                            <td>{{farmer.county}}</td>
+                            <td>{{farmer.county_name}}</td>
                             <td>{{farmer.acreage}}</td>
-                            <td>{{farmer.enumerator.code}}</td>
-                            <td>{{farmer.landmark}}</td>
+                            <td>{{farmer.enumerator.user.get_full_name}}</td>
+                            <td>{{farmer.farmer_group.title}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -157,8 +157,8 @@
                             <th class="custom-th">Phone NUmber</th>
                             <th class="custom-th">County</th>
                             <th class="custom-th">Acreage</th>
-                            <th class="custom-th">Enumerator Code</th>
-                            <th class="custom-th">Landmark</th>
+                            <th class="custom-th">Enumerator</th>
+                            <th class="custom-th">Group</th>
                         </tr>
                     </tfoot>
                 </table>

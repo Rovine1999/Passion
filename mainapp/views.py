@@ -71,11 +71,8 @@ def home(request):
     # user.is_superuser = True
     # user.is_active = True
     # user.save()
-
-    today = timezone.now().date()
-    close_events_date = today + timedelta(days=3)
+    
     context = {
-        "new_events": Event.objects.filter(date__gte=today).filter(date__lt=close_events_date),
         "counties": County.objects.all(),
         "featured_products": Product.objects.filter(featured=True)
     }

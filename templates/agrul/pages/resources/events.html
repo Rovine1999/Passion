@@ -29,7 +29,7 @@
         {% with upcoming_events|length as upcoming_len %}
         {% if upcoming_len > 0 %}
         <div class="blog-item-box">
-            <h2>Upcoming Events ({{upcoming_len}}) </h2>
+            <h2 style="padding-bottom: 5px;">Upcoming Events ({{upcoming_len}}) </h2>
             <div class="row">
                 <!-- Single group -->
                 {% for event in upcoming_events %}
@@ -45,7 +45,7 @@
         {% with past_events|length as past_len %}
         {% if past_len > 0 %}
         <div class="blog-item-box">
-            <h2>Past Events ({{past_len}}) </h2>
+            <h2 style="padding-bottom: 5px;">Past Events ({{past_len}}) </h2>
             <div class="row">
                 <!-- Single group -->
                 {% for event in past_events %}

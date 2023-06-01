@@ -3,6 +3,8 @@ from urllib.parse import urlparse, parse_qsl, urlencode
 
 from django import template
 from django.db.models import Q
+from django.utils import timezone
+from datetime import timedelta
 
 from giz_app.models import Enumerator, Company
 from giz_app.serializers import CollectionCenterSerializer, UserSerializer
@@ -11,6 +13,7 @@ from resources.serializers import DemoFarmSerializer, NurserySerializer, FarmerG
 from giz_app.models import Farmer, CollectionCenter, County
 from resources.models import Nursery, DemoFarm, FarmerGroup
 from django.urls import reverse
+from resources.models import Event
 
 register = template.Library()
 
@@ -223,3 +226,12 @@ def quick_stats():
         "collection_centers": CollectionCenter.objects.count(),
         "counties": County.objects.count(),
     }
+
+
+@register.simple_tag
+def events(events_type):
+    if events_type == 'new_events':
+        today = timezone.now().date()
+        close_events_date = today + timedelta(days=3)
+        return Event.objects.filter(date__gte=today).filter(date__lt=close_events_date)
+    return []

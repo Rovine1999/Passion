@@ -43,12 +43,12 @@
                 {% for collection in collection_centers %}
                 <div class="col-md-3 mb-3">
                     <div class="card border-0 shadow">
-                        <div style="height: 200px;">
+                        <!-- <div style="height: 200px;">
                             <img src="{% if collection.image %} {{collection.image.url}} {% endif %}"
-                        class="card-img-top" alt="{{collection.title}}">
-                        </div>
+                                class="card-img-top" alt="{{collection.name}}">
+                        </div> -->
                         <div class="card-body text-start">
-                            <h5 class="card-title ">{{collection.title}}</h5>
+                            <h5 class="card-title ">{{collection.name}}</h5>
                         </div>
                     </div>
                 </div>

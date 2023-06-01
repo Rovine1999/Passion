@@ -230,7 +230,7 @@ def demofarms(request):
     }
     return render(request, template_name='agrul/pages/farmers/demofarms.html', context=context)
 
-
+ 
 def collection(request):
     context = {
         'collection_centers': CollectionCenter.objects.all()

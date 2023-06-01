@@ -58,6 +58,7 @@
                     <div class="footer-item recent-post">
                         <h4 class="widget-title">Recent Events</h4>
                         <ul>
+                            {% events 'new_events' as new_events %}
                             {% for event in new_events|slice:":3" %}
                             <li>
                                 <div class="thumb">
@@ -77,6 +78,10 @@
                                     </h5>
                                 </div>
                             </li>
+                            {% empty %}
+                            <div class="alert alert-info">
+                                There are no upcoming events
+                            </div>
                             {% endfor %}
                         </ul>
                     </div>

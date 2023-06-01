@@ -1,6 +1,7 @@
 {% extends './../../base.html' %}
 {% load static %}
 {% load customtags %}
+{% load humanize %}
 {% block title %} Farmer Groups {% endblock %}
 
 {% block content %}
@@ -42,10 +43,12 @@
                                             style="max-height: 100%; object-fit: fill;">
                                     </a>
                                     {% endif %}
-                                    <div class="date"><strong>18</strong> <span>Apr, 22</span></div>
+                                    <div class="date"><strong><i class="fas fa-users"></i></strong>
+                                        <span>{{group.farmer_set|length|intcomma}}</span>
+                                    </div>
                                 </div>
                                 <div class="info">
-                                    <div class="meta">
+                                    <div class="meta d-none">
                                         <ul>
                                             <li>
                                                 <a href="javascript:void(0)"><i class="fas fa-users"></i>
@@ -62,7 +65,7 @@
                                     </h3>
                                     <button class="btn btn-primary btn-sm mt-2" data-bs-target="#preview-modal"
                                         data-bs-toggle="modal" data-bs-title="{{group.title}}"
-                                        data-bs-content="{{group.description}}">
+                                        data-bs-content="{{group.description}}{% if request.user.enumerator or request.user.is_superuser %}<br /> Group Code: {{group.code}} {% endif %}">
                                         Learn More
                                     </button>
                                 </div>

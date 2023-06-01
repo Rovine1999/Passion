@@ -359,7 +359,7 @@ class Aggregator(models.Model):
 
         return super().save(*args, **kwargs)
 
-
+ 
 class CollectionCenter(models.Model):
     county = models.ForeignKey(
         County, blank=True, null=True, on_delete=models.SET_NULL)
