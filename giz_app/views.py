@@ -232,8 +232,15 @@ def demofarms(request):
 
  
 def collection(request):
+    data = CollectionCenter.objects.all()
     context = {
-        'collection_centers': CollectionCenter.objects.all()
+        'collection_centers': data,
+        'demofarms_data_markers': json.dumps(
+            [[center.name, center.lat, center.lon] for center in data]
+        ),
+        'demofarms_data_markers_info': json.dumps(
+            [[""] for center in data]
+        ),
     }
     return render(request, template_name='agrul/pages/farmers/collection-centers.html', context=context)
 

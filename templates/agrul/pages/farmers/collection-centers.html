@@ -1,7 +1,6 @@
 {% extends './../../base.html' %}
 {% block title %} Collection Centers {% endblock title %}
-
-
+ 
 {% load static %}
 {% load customtags %}
 
@@ -34,27 +33,195 @@
     <div class="container">
         <div class="blog-item-box">
             <h2 class="mb-3">Collection Centers</h2>
-            {% if collection_centers|length == 0 %}
-            <div class="alert alert-info">
-                <p class="text-center p-0 m-0">No Collection Centers Found</p>
-            </div>
-            {% endif %}
             <div class="row">
-                {% for collection in collection_centers %}
-                <div class="col-md-3 mb-3">
-                    <div class="card border-0 shadow">
-                        <!-- <div style="height: 200px;">
-                            <img src="{% if collection.image %} {{collection.image.url}} {% endif %}"
-                                class="card-img-top" alt="{{collection.name}}">
-                        </div> -->
-                        <div class="card-body text-start">
-                            <h5 class="card-title ">{{collection.name}}</h5>
+                <div class="col-md-4">
+                    <!-- <h4 class="mb-3">Demonstration Farms Centers</h4> -->
+                    <div class="list-group">
+                        {% if collection_centers|length > 0 %}
+
+                        {% for county in 'counties'|counties %}
+                        {% with county.id|filter_collection_centers_per_county as county_demofarns %}
+                        <div class="mb-4">
+                            <h5 class="mb-2">{{county.name}} County</h5>
+                            {% if collection_centers|length > 0 %}
+
+                            {% for center in collection_centers %}
+                            <button type="button" class="list-group-item list-group-item-action rounded-pill"
+                                data-bs-toggle="modal" data-bs-target="#demofarm-modal" data-bs-title="{{center.name}}"
+                                data-bs-description="{{center.description}}" data-bs-county="{{center.county.name}}"
+                                data-bs-obj="{{center|to_json:'collection-center'}}">
+                                {{center.name}}
+                            </button>
+                            {% endfor %}
+
+                            {% else %}
+                            <div class="alert alert-secondary">
+                                There are no collection centers listed in this county.
+                            </div>
+                            {% endif %}
                         </div>
+                        {% endwith %}
+
+                        {% endfor %}
+                        {% else %}
+                        <div class="alert alert-secondary">
+                            There are no collection centers listed yet.
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
-                {% endfor %}
+                <div class="col-md-8">
+                    <div id="demo_markers" class="d-none">{{demofarms_data_markers}}</div>
+                    <div id="demo_markersinfo" class="d-none">{{demofarms_data_markers_info}}</div>
+                    <div id="demo_map" class="map"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Demofarm Modal -->
+<div class="modal fade" id="demofarm-modal" tabindex="-1" aria-labelledby="demofarm-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="demofarm-modal-title"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function details(title, value) {
+        return `
+        <div class="row mb-3">
+            <div class="col-4">
+                <div class="d-flex justify-content-between">
+                    <p class="m-0 p-0">${title}</p>
+                    <span>:</span>
+                </div>
+            </div>
+            <div class="col-8">${value}</div>
+        </div>
+        `
+    }
+
+    function deleteWhitespace(str) {
+        if (str) {
+            return str.trim()
+        }
+        else {
+            return "No Challenges"
+        }
+    }
+
+    function bodyContent(data) {
+        return `
+            <h4 class="mb-3">${data?.county?.name} County</h4>
+            <div class="mb-3">
+                ${details("Contact Person Name", data?.contact_person_name)}
+                ${details("Contact Person Telephone", data?.contact_person_phone_number)}
+            </div>
+        `
+    }
+
+    
+</script>
+
+<script>
+    const modal = document.getElementById('demofarm-modal')
+    modal.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget
+        const title = button.getAttribute('data-bs-title')
+        const description = button.getAttribute('data-bs-description')
+        const county = button.getAttribute('data-bs-county')
+
+        const obj = JSON.parse(button.getAttribute('data-bs-obj'))
+
+        const modalTitle = modal.querySelector('.modal-title')
+        const modalBody = modal.querySelector('.modal-body')
+
+        modalTitle.textContent = `${title} Collection Center`
+        modalBody.innerHTML = bodyContent(obj)
+    })
+</script>
+
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuWH9r3AtgcOCqAtM26m2gW6OeV8ETsMI&callback=initMap&v=weekly"
+    defer></script>
+
+
+<script>
+    // Collect data about the demo farms markers in this script
+    const demo_markers_ = document.querySelector("#demo_markers")
+    const demo_markers = JSON.parse(demo_markers_.innerHTML)
+    const demo_markers_info_ = document.querySelector("#demo_markersinfo")
+    const demo_markers_info = JSON.parse(demo_markers_info_.innerHTML)
+</script>
+
+<script>
+    // Initialize and add the nursery map
+    function initDemoFarmsMap() {
+        var map;
+        var bounds = new google.maps.LatLngBounds();
+        var mapOptions = {
+            mapTypeId: 'roadmap',
+            center: { lat: 0.0236, lng: 37.9062 },
+            zoom: 7,
+        };
+
+        // Display a map on the web page
+        map = new google.maps.Map(document.getElementById("demo_map"), mapOptions);
+        map.setTilt(50);
+        if (demo_markers) {
+            var markers = demo_markers
+
+            const infoWindowContent = demo_markers_info
+
+            // Add multiple markers to map
+            var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+            // Place each marker on the map  
+            for (i = 0; i < markers.length; i++) {
+                var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                bounds.extend(position);
+                marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: markers[i][0]
+                });
+
+                // Add info window to marker    
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        // infoWindow.setContent(infoWindowContent[i][0]);
+                        infoWindow.open(map, marker);
+                    }
+                })(marker, i));
+
+                // Center the map to fit all markers on the screen
+                map.fitBounds(bounds);
+            }
+
+            // Set zoom level
+            var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {
+                this.setZoom(7);
+                google.maps.event.removeListener(boundsListener);
+            });
+        }
+    }
+
+    window.initMap = initDemoFarmsMap;
+</script>
+
 {% endblock %}

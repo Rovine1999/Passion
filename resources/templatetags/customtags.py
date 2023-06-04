@@ -48,6 +48,11 @@ def filter_demofarms_per_county(county_id):
 
 
 @register.filter
+def filter_collection_centers_per_county(county_id):
+    return CollectionCenter.objects.filter(county__id=county_id)
+
+
+@register.filter
 def update_county_param(path, county):
     parsed_url = urlparse(path)
     query_params = dict(parse_qsl(parsed_url.query))
@@ -193,6 +198,12 @@ def providers(providers_):
 
 def get_providers():
     all_providers = [
+        {'label': 'Cooperatives', 'value': 'Coperatives'},
+        {'label': 'Processors', 'value': 'Processors'},
+        {'label': 'Input Suppliers', 'value': 'InputSuppliersAndAgrovets'},
+        {'label': 'Financial Providers', 'value': 'FinancialProvider'},
+        {'label': 'Insurance Providers', 'value': 'InsuranceProvider'},
+        {'label': 'County Government', 'value': 'CountyGovernment'},
     ]
     return all_providers
 

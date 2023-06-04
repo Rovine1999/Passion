@@ -365,7 +365,6 @@ class CollectionCenter(models.Model):
         County, blank=True, null=True, on_delete=models.SET_NULL)
     sub_county = models.CharField(max_length=100, blank=True, null=True)
     code = models.CharField(max_length=20, blank=True, null=True)
-    county_number = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=512, blank=False, null=False)
     grade_1 = models.IntegerField(blank=True, null=True)
     price_for_grade_1 = models.IntegerField(blank=True, null=True)
@@ -397,7 +396,7 @@ class CollectionCenter(models.Model):
                     self.code = uuid
                     break
 
-        super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
 class Contact(models.Model):

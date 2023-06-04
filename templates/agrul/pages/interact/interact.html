@@ -60,8 +60,13 @@
     .active-tab,
     .just-tab:hover {
         border: 2px solid var(--bs-blue);
-        color: white;
+        color: white !important;
         background-color: var(--bs-blue);
+    }
+
+    .active-tab p,
+    .text-muted {
+        color: white !important;
     }
 
     .custom-header {
@@ -112,9 +117,9 @@
         <div class="blog-item-box">
             <div class="row">
                 <div class="col-md-12">
-    
+
                     <div class="c-card mb-3 position-relative p-2">
-    
+
                         <ul class="nav nav-tabs d-flex justify-content-center" id="myTab">
                             <li class="nav-item">
                                 <a href="#public" class="nav-link px-5 active" data-bs-toggle="tab">Public</a>
@@ -125,119 +130,130 @@
                         </ul>
                         <div class="tab-content py-2">
                             <div class="tab-pane fade show active" id="public">
-    
-                                {% if request.user.is_anonymous %}
-                                <div class="alert alert-info my-auto border-0 d-flex justify-content-center align-items-center"
-                                    style="height: 180px;">
-                                    <h4 class="text-whit text-center">You must be logged in to post</h4>
-                                </div>
-                                {% else %}
-                                <div class="card shadow-lg border-0" style="border-radius: 10px; margin-bottom: 20px;">
-                                    <div class="card-body">
-                                        <div class="px-2 py-3">
-                                            <div class="d-flex align-items-center input-group-lg">
-                                                <div class="my-avatar" style="--size: 60px">
-                                                    {% if request.user.profile.profile_photo %}
-                                                    <img src="{{request.user.profile.profile_photo.url}}" width="90%"
-                                                        alt="{{request.user.username}}">
-                                                    {% else %}
-                                                    {{request.user.username|make_list|first}}
-                                                    {% endif %}
-                                                </div>
-                                                <input type="text" id="post" class="form-control ms-2 shadow-none rounded-pill"
-                                                    placeholder="Start post" style="cursor: pointer" data-bs-toggle="modal"
-                                                    data-bs-target="#create-post">
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center mt-2">
-                                                <button
-                                                    class="c-btn btn btn-default d-flex align-items-center px-3 border-0 rounded-pill"
-                                                    data-bs-toggle="modal" data-bs-target="#create-post">
-                                                    <i class="fa fa-camera text-success fs-5"></i>
-                                                    <span class="ms-2">Photo</span>
-                                                </button>
-                                                <button
-                                                    class="c-btn btn btn-default d-flex align-items-center px-3 ms-3 border-0 rounded-pill"
-                                                    data-bs-toggle="modal" data-bs-target="#create-post">
-                                                    <i class="fa fa-video text-primary fs-5"></i>
-                                                    <span class="ms-2">Video</span>
-                                                </button>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2">
+                                        {% if request.user.is_anonymous %}
+                                        <div class="alert alert-info my-auto border-0 d-flex justify-content-center align-items-center"
+                                            style="height: 180px;">
+                                            <h4 class="text-whit text-center">You must be logged in to post</h4>
                                         </div>
-                                    </div>
-                                </div>
-                                {% endif %}
-    
-                                {% for post in posts %}
-                                <div class="card shadow-lg border-0" style="border-radius: 10px; margin: 20px 0;">
-                                    <div class="card-body">
-                                        <div class="c-card">
-                                            <div class="hstack gap-2 align-items-center">
-                                                <div class="my-avatar" style="--size: 60px">
-                                                    {% if post.created_by.profile.profile_photo %}
-                                                    <img src="{{post.created_by.profile.profile_photo.url}}" width="90%"
-                                                        alt="{{request.user.username}}">
-                                                    {% else %}
-                                                    {{post.created_by.username|make_list|first}}
-                                                    {% endif %}
-                                                </div>
-                                                <div class="vstack gap-0">
-                                                    <h4 class="m-0 p-0">{{post.created_by.first_name}} {{post.created_by.last_name}}</h4>
-                                                    <p class="text-muted p-0 m-0">{{post.created_by.username}}</p>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <a href="{% url 'post' post.id post.slug %}"
-                                                    style="text-decoration: none; color: var(--bs-text-color);">
-                                                    <h6 class="mb-2">
-                                                        {{post.title}}
-                                                    </h6>
-                                                </a>
-                                                <a href="{% url 'post' post.id post.slug %}"
-                                                    style="text-decoration: none; color: var(--bs-text-color);">
-                                                    <p style="white-space: pre-wrap;" class="m-0 p-0 mb-2 readmore">{{post.message}}</p>
-                                                </a>
-                                                {% if post.image %}
-                                                <img src="{{post.image.url}}" width="100%" alt="Post">
-                                                {% endif %}
-                                                {% if post.video %}
-                                                <video src="{{post.video.url}}" width="100%" controls alt="Post">
-                                                    {% endif %}
-                                            </div>
-                                            <div class="py-2">
-                                                <div class="d-flex align-items-center">
-                                                    <a href="{% url 'post' post.id post.slug %}"
-                                                        class="d-flex align-items-center btn btn-secondary py-2 px-4">
-                                                        <i class="fa fa-reply"></i>
-                                                        <span class="mx-2">
-                                                            Replies
-                                                        </span>
-                                                        <span>{{post.reply_count}}</span>
-                                                    </a>
+                                        {% else %}
+                                        <div class="card shadow-lg border-0"
+                                            style="border-radius: 10px; margin-bottom: 20px;">
+                                            <div class="card-body">
+                                                <div class="px-2 py-3">
+                                                    <div class="d-flex align-items-center input-group-lg">
+                                                        <div class="my-avatar" style="--size: 60px">
+                                                            {% if request.user.profile.profile_photo %}
+                                                            <img src="{{request.user.profile.profile_photo.url}}"
+                                                                width="90%" alt="{{request.user.username}}">
+                                                            {% else %}
+                                                            {{request.user.username|make_list|first}}
+                                                            {% endif %}
+                                                        </div>
+                                                        <input type="text" id="post"
+                                                            class="form-control ms-2 shadow-none rounded-pill"
+                                                            placeholder="Start post" style="cursor: pointer"
+                                                            data-bs-toggle="modal" data-bs-target="#create-post">
+                                                    </div>
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <button
+                                                            class="c-btn btn btn-default d-flex align-items-center px-3 border-0 rounded-pill"
+                                                            data-bs-toggle="modal" data-bs-target="#create-post">
+                                                            <i class="fa fa-camera text-success fs-5"></i>
+                                                            <span class="ms-2">Photo</span>
+                                                        </button>
+                                                        <button
+                                                            class="c-btn btn btn-default d-flex align-items-center px-3 ms-3 border-0 rounded-pill"
+                                                            data-bs-toggle="modal" data-bs-target="#create-post">
+                                                            <i class="fa fa-video text-primary fs-5"></i>
+                                                            <span class="ms-2">Video</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endif %}
+
+                                        {% for post in posts %}
+                                        <div class="card shadow-lg border-0"
+                                            style="border-radius: 10px; margin: 20px 0;">
+                                            <div class="card-body">
+                                                <div class="c-card">
+                                                    <div class="hstack gap-2 align-items-center">
+                                                        <div class="my-avatar" style="--size: 60px">
+                                                            {% if post.created_by.profile.profile_photo %}
+                                                            <img src="{{post.created_by.profile.profile_photo.url}}"
+                                                                width="90%" alt="{{request.user.username}}">
+                                                            {% else %}
+                                                            {{post.created_by.username|make_list|first}}
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="vstack gap-0">
+                                                            <h4 class="m-0 p-0 text-dark" style="color: #131419 !important">
+                                                                {{post.created_by.get_full_name}}</h4>
+                                                            <p class="text-muted p-0 m-0" style="color: gray !important;">
+                                                                {{post.created_by.username}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <a href="{% url 'post' post.id post.slug %}"
+                                                            style="text-decoration: none; color: var(--bs-text-color);">
+                                                            <h6 class="mb-2">
+                                                                {{post.title}}
+                                                            </h6>
+                                                        </a>
+                                                        <a href="{% url 'post' post.id post.slug %}"
+                                                            style="text-decoration: none; color: var(--bs-text-color);">
+                                                            <p style="white-space: pre-wrap;"
+                                                                class="m-0 p-0 mb-2 readmore">{{post.message}}</p>
+                                                        </a>
+                                                        {% if post.image %}
+                                                        <img src="{{post.image.url}}" width="100%" alt="Post">
+                                                        {% endif %}
+                                                        {% if post.video %}
+                                                        <video src="{{post.video.url}}" width="100%" controls
+                                                            alt="Post">
+                                                            {% endif %}
+                                                    </div>
+                                                    <div class="py-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <a href="{% url 'post' post.id post.slug %}"
+                                                                class="d-flex align-items-center btn btn-secondary py-2 px-4">
+                                                                <i class="fa fa-reply"></i>
+                                                                <span class="mx-2">
+                                                                    Replies
+                                                                </span>
+                                                                <span>{{post.reply_count}}</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                                {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="private">
                                 <div class="d-none" id="my_user_id" data-my_user_id="{{request.user.id}}"></div>
-    
+
                                 <div style="background-color: #CDC4F9;">
                                     <div>
                                         <div>
                                             <section>
                                                 <div class="p-2">
-                                
+
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                
+
                                                             <div class="card" id="chat3" style="border-radius: 15px;">
                                                                 <div class="card-body">
-                                
+
                                                                     <div class="row">
-                                                                        <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 custom-border">
-                                
+                                                                        <div
+                                                                            class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 custom-border">
+
                                                                             <div class="">
                                                                                 <!-- <div class="text-muted d-flex justify-content-start align-items-center p-3 custom-header"
                                                                                     style="height: 60px;">
@@ -251,16 +267,25 @@
                                                                                     </div>
                                                                                 </div> -->
                                                                                 <div>
-                                                                                    <div class="d-flex gap-2 py-2 align-items-center">
-                                                                                        <button class="btn just-tab active-tab" id="users-btn"
-                                                                                            style="flex: 1;" data-tab="users" data-id="users">
+                                                                                    <div
+                                                                                        class="d-flex gap-2 py-2 align-items-center">
+                                                                                        <button
+                                                                                            class="btn just-tab active-tab"
+                                                                                            id="users-btn"
+                                                                                            style="flex: 1;"
+                                                                                            data-tab="users"
+                                                                                            data-id="users">
                                                                                             Chats
                                                                                         </button>
-                                                                                        <button class="btn just-tab" id="groups-btn" data-tab="groups" data-id="groups" style="flex: 1;">Groups</button>
+                                                                                        <button class="btn just-tab"
+                                                                                            id="groups-btn"
+                                                                                            data-tab="groups"
+                                                                                            data-id="groups"
+                                                                                            style="flex: 1;">Groups</button>
                                                                                     </div>
                                                                                 </div>
-                                
-                                
+
+
                                                                                 <div style="position: relative; height: 400px; overflow: auto;"
                                                                                     class="custom-scrollbar">
                                                                                     <div id="users-tab" class="d-block">
@@ -268,31 +293,37 @@
                                                                                             {% for chat_room in request.user|chat_rooms %}
                                                                                             {% with chat_room|get_other_user:request.user.id as other_user %}
                                                                                             {% with other_user|get_user_type as user_type %}
-                                                                                            <li class="p-2 border-bottom">
-                                                                                                <a href="javascript:void(0)" id="chat_room_{{chat_room.chat_name}}"
+                                                                                            <li
+                                                                                                class="p-2 border-bottom">
+                                                                                                <a href="javascript:void(0)"
+                                                                                                    id="chat_room_{{chat_room.chat_name}}"
                                                                                                     class="d-flex align-items-center w-100 gap-3 chat_room"
                                                                                                     style="text-decoration: none; border-radius: 10px;"
                                                                                                     data-data="{{chat_room|get_chat_room_data:request.user.id}}">
                                                                                                     <div
                                                                                                         class="d-flex flex-row align-items-center gap-3">
-                                                                                                        <div class="my-avatar" style="--size: 60px">
+                                                                                                        <div class="my-avatar"
+                                                                                                            style="--size: 60px">
                                                                                                             {% if other_user.profile.profile_photo %}
                                                                                                             <img src="{{other_user.profile.profile_photo.url}}"
                                                                                                                 alt="{{group.title}}"
                                                                                                                 class="d-flex align-self-center">
                                                                                                             {% else %}
-                                                                                                                <img src="{% static 'placeholder/single.png' %}"
-                                                                                                                    alt="{{group.title}}"
-                                                                                                                    class="d-flex align-self-center">
+                                                                                                            <img src="{% static 'placeholder/single.png' %}"
+                                                                                                                alt="{{group.title}}"
+                                                                                                                class="d-flex align-self-center">
                                                                                                             {% endif %}
                                                                                                             <span
                                                                                                                 class="badge bg-success badge-dot"></span>
                                                                                                         </div>
                                                                                                         <div class="">
-                                                                                                            <p class="fw-bold mb-0">
+                                                                                                            <p
+                                                                                                                class="fw-bold mb-0">
                                                                                                                 {{other_user.first_name}}
-                                                                                                                {{other_user.last_name}}</p>
-                                                                                                            <p class="small text-muted">
+                                                                                                                {{other_user.last_name}}
+                                                                                                            </p>
+                                                                                                            <p
+                                                                                                                class="small text-muted">
                                                                                                                 {{user_type}}
                                                                                                             </p>
                                                                                                         </div>
@@ -302,11 +333,16 @@
                                                                                             {% endwith %}
                                                                                             {% endwith %}
                                                                                             {% empty %}
-                                                                                            <div class="alert alert-info">
+                                                                                            <div
+                                                                                                class="alert alert-info">
                                                                                                 <small>
-                                                                                                    You have no friends to interact with. Visit any
+                                                                                                    You have no friends
+                                                                                                    to interact with.
+                                                                                                    Visit any
                                                                                                     group or
-                                                                                                    farmer page to add new friends to interact with.
+                                                                                                    farmer page to add
+                                                                                                    new friends to
+                                                                                                    interact with.
                                                                                                 </small>
                                                                                             </div>
                                                                                             {% endfor %}
@@ -315,7 +351,8 @@
                                                                                     <div id="groups-tab" class="d-none">
                                                                                         <ul class="list-unstyled mb-0">
                                                                                             {% for group in ''|farmer_groups %}
-                                                                                            <li class="p-2 border-bottom">
+                                                                                            <li
+                                                                                                class="p-2 border-bottom">
                                                                                                 <a href="javascript:void(0)"
                                                                                                     id="group_room_{{group.id}}"
                                                                                                     class="d-flex align-items-center w-100 gap-3 group_room"
@@ -324,23 +361,30 @@
                                                                                                     data-data="{{group|to_json:'farmer-group'}}">
                                                                                                     <div
                                                                                                         class="d-flex flex-row align-items-center gap-3">
-                                                                                                        <div class="my-avatar" style="--size: 60px">
+                                                                                                        <div class="my-avatar"
+                                                                                                            style="--size: 60px">
                                                                                                             {% if group.image %}
-                                                                                                                <img src="{{group.image.url}}"
-                                                                                                                    alt="{{group.title}}"
-                                                                                                                    class="d-flex align-self-center">
+                                                                                                            <img src="{{group.image.url}}"
+                                                                                                                alt="{{group.title}}"
+                                                                                                                class="d-flex align-self-center">
                                                                                                             {% else %}
-                                                                                                                <img src="{% static 'placeholder/group.png' %}"
-                                                                                                                    alt="{{group.title}}"
-                                                                                                                    class="d-flex align-self-center">
+                                                                                                            <img src="{% static 'placeholder/group.png' %}"
+                                                                                                                alt="{{group.title}}"
+                                                                                                                class="d-flex align-self-center">
                                                                                                             {% endif %}
                                                                                                             <span
                                                                                                                 class="badge bg-success badge-dot"></span>
                                                                                                         </div>
                                                                                                         <div class="">
-                                                                                                            <p class="fw-bold mb-0">{{group.title}}</p>
-                                                                                                            <p class="small text-muted">
-                                                                                                                {{group.county.name}} | Location:
+                                                                                                            <p
+                                                                                                                class="fw-bold mb-0">
+                                                                                                                {{group.title}}
+                                                                                                            </p>
+                                                                                                            <p
+                                                                                                                class="small text-muted">
+                                                                                                                {{group.county.name}}
+                                                                                                                |
+                                                                                                                Location:
                                                                                                                 {{group.location}}
                                                                                                             </p>
                                                                                                         </div>
@@ -348,97 +392,118 @@
                                                                                                 </a>
                                                                                             </li>
                                                                                             {% empty %}
-                                                                                            <div class="alert alert-info">
-                                                                                                <small>Groups found</small>
+                                                                                            <div
+                                                                                                class="alert alert-info">
+                                                                                                <small>Groups
+                                                                                                    found</small>
                                                                                             </div>
                                                                                             {% endfor %}
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div>
-                                
+
                                                                             </div>
-                                
+
                                                                         </div>
-                                
-                                                                        <div class="col-md-6 col-lg-7 col-xl-8 d-block" id="chat-space-empty">
-                                                                            <div class="h-100 d-flex align-items-center justify-content-center">
+
+                                                                        <div class="col-md-6 col-lg-7 col-xl-8 d-block"
+                                                                            id="chat-space-empty">
+                                                                            <div
+                                                                                class="h-100 d-flex align-items-center justify-content-center">
                                                                                 <div class="alert alert-info text-dark">
-                                                                                    <small>Kindly select a user or group to continue.</small>
+                                                                                    <small>Kindly select a user or group
+                                                                                        to continue.</small>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-6 col-lg-7 col-xl-8 d-none" id="chat-space">
+                                                                        <div class="col-md-6 col-lg-7 col-xl-8 d-none"
+                                                                            id="chat-space">
                                                                             <div class="text-muted d-flex justify-content-start align-items-center gap-3 custom-header"
                                                                                 style="height: 60px;" id="chat-header">
-                                                                                <div class="my-avatar" style="--size: 50px">
+                                                                                <div class="my-avatar"
+                                                                                    style="--size: 50px">
                                                                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                                                                        alt="avatar" class="d-flex align-self-center">
+                                                                                        alt="avatar"
+                                                                                        class="d-flex align-self-center">
                                                                                 </div>
                                                                                 <div class="">
-                                                                                    <p class="fw-bold mb-0">Select User/Group</p>
+                                                                                    <p class="fw-bold mb-0">Select
+                                                                                        User/Group</p>
                                                                                     <p class="small text-muted">
                                                                                         N/a
                                                                                     </p>
                                                                                 </div>
                                                                             </div>
-                                                                            <div id="messages" class="pt-3 pe-3 custom-scrollbar"
+                                                                            <div id="messages"
+                                                                                class="pt-3 pe-3 custom-scrollbar"
                                                                                 style="position: relative; height: 400px; overflow: auto;">
                                                                             </div>
                                                                             <div id="scroll-to"></div>
-                                
+
                                                                             <div class="text-muted d-flex justify-content-start align-items-center pe-3 custom-header"
                                                                                 style="height: 60px;">
-                                
+
                                                                                 {% if user.is_authenticated %}
-                                                                                <div class="my-avatar" style="--size: 40px">
+                                                                                <div class="my-avatar"
+                                                                                    style="--size: 40px">
                                                                                     <img src="{% if request.user.profile.profile_photo %} {{request.user.profile.profile_photo.url}} {% endif %}"
                                                                                         alt="{{request.user.username}}">
                                                                                 </div>
-                                                                                <form id="chat-form" method="post" enctype="multipart/form-data"
-                                                                                    class="d-flex align-items-center" style="flex: 1;">
+                                                                                <form id="chat-form" method="post"
+                                                                                    enctype="multipart/form-data"
+                                                                                    class="d-flex align-items-center"
+                                                                                    style="flex: 1;">
                                                                                     {% csrf_token %}
-                                                                                    <input type="text" id="text" class="form-control form-control-lg"
-                                                                                        id="exampleFormControlInput2" name="text"
+                                                                                    <input type="text" id="text"
+                                                                                        class="form-control form-control-lg"
+                                                                                        id="exampleFormControlInput2"
+                                                                                        name="text"
                                                                                         placeholder="Type message">
                                                                                     <label
                                                                                         class="btn mx-2 p-0 m-0 d-flex align-items-center border-0 rounded-pill"
                                                                                         for="video">
-                                                                                        <input id="video" name="files_" type="file" multiple
-                                                                                            accept="image/*" class="d-none">
-                                                                                        <i class="fas fa-paperclip text-primary"></i>
+                                                                                        <input id="video" name="files_"
+                                                                                            type="file" multiple
+                                                                                            accept="image/*"
+                                                                                            class="d-none">
+                                                                                        <i
+                                                                                            class="fas fa-paperclip text-primary"></i>
                                                                                     </label>
                                                                                     <button class="btn p-0 m-0 mx-2">
-                                                                                        <i class="fas fa-paper-plane"></i>
+                                                                                        <i
+                                                                                            class="fas fa-paper-plane"></i>
                                                                                     </button>
                                                                                 </form>
                                                                                 <!-- <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a> -->
                                                                                 {% else %}
                                                                                 <div class="alert alert-info">
-                                                                                    <small>Login Required to be able to interact with other members</small>
+                                                                                    <small>Login Required to be able to
+                                                                                        interact with other
+                                                                                        members</small>
                                                                                 </div>
                                                                                 {% endif %}
                                                                             </div>
-                                
+
                                                                         </div>
                                                                     </div>
-                                
+
                                                                 </div>
                                                             </div>
-                                
+
                                                         </div>
                                                     </div>
-                                
+
                                                 </div>
                                             </section>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-    
+
                         </div>
-    
+
                     </div>
-    
+
                 </div>
             </div>
         </div>
@@ -527,19 +592,19 @@
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>
     let lightbox = GLightbox({
-            selector: '.glightbox'
-        });
-    function initializeGlight(){
-         let lightbox = GLightbox({
+        selector: '.glightbox'
+    });
+    function initializeGlight() {
+        let lightbox = GLightbox({
             selector: '.glightbox'
         });
     }
 
     initializeGlight()
- 
+
 </script>
 <script type="module">
-    import { writeToFirebase, listenOnFirebaseMessages, writeToFirebaseGroup, listenOnFirebaseGroupMessages } from '/static/assets/js/firebase.js';
+    import { writeToFirebase, listenOnFirebaseMessages, writeToFirebaseGroup, listenOnFirebaseGroupMessages } from '/static/agrul/assets/js/firebase.js';
     listenOnFirebaseMessages(printNewMessageToChat)
     listenOnFirebaseGroupMessages(printNewMessageToChat)
 
@@ -550,22 +615,22 @@
         activeChat: 'users',
     }
 
-    function hideShowEmptySpaceAndChat(hideEmptySpace){
-        if(hideEmptySpace){
-        $('#chat-space-empty').removeClass('d-block')
-        $('#chat-space-empty').addClass('d-none')
+    function hideShowEmptySpaceAndChat(hideEmptySpace) {
+        if (hideEmptySpace) {
+            $('#chat-space-empty').removeClass('d-block')
+            $('#chat-space-empty').addClass('d-none')
 
-        $('#chat-space').removeClass('d-none')
-        $('#chat-space').addClass('d-block')
-    }
-    else{
-        $('#chat-space-empty').addClass('d-block')
-        $('#chat-space-empty').removeClass('d-none')
+            $('#chat-space').removeClass('d-none')
+            $('#chat-space').addClass('d-block')
+        }
+        else {
+            $('#chat-space-empty').addClass('d-block')
+            $('#chat-space-empty').removeClass('d-none')
 
-        $('#chat-space').addClass('d-none')
-        $('#chat-space').removeClass('d-block')
+            $('#chat-space').addClass('d-none')
+            $('#chat-space').removeClass('d-block')
+        }
     }
-}
 
     let validator = {
         set(target, key, value) {
@@ -578,7 +643,7 @@
                 return switchActiveTab(value)
             }
             if (key === 'user') {
-                
+
                 if (value) {
                     hideShowEmptySpaceAndChat(true)
                 }
@@ -586,7 +651,7 @@
                 return changeActiveUser(value)
             }
             if (key === 'group') {
-                
+
                 if (value) {
                     hideShowEmptySpaceAndChat(true)
                 }
@@ -655,7 +720,7 @@
         return "switched"
     }
 
-    function emptyMessages(){
+    function emptyMessages() {
         $('#messages').html('')
     }
 
@@ -694,7 +759,7 @@
         }
     }
 
-    function diselectAllChatRooms (){
+    function diselectAllChatRooms() {
         const chat_rooms = document.querySelectorAll('.chat_room')
         $(chat_rooms).each((i) => {
             const el = chat_rooms[i]
@@ -712,7 +777,7 @@
         return "user set"
     }
 
-    function diselectAllGroupRooms(){
+    function diselectAllGroupRooms() {
         const chat_rooms = document.querySelectorAll('.group_room')
         $(chat_rooms).each((i) => {
             const el = chat_rooms[i]
@@ -756,7 +821,7 @@
 
     function ChatHeaderGroup(group) {
 
-    return `
+        return `
         <div class="my-avatar" style="--size: 50px">
             <img src="${group?.image}"
                 alt="avatar" class="d-flex align-self-center">
@@ -824,11 +889,11 @@
             toastr.error("Text Message required")
             return
         }
-        if(activeOptionsProxy.tab === 'users'){
+        if (activeOptionsProxy.tab === 'users') {
             postMessage()
-            
+
         }
-        else{
+        else {
             postGroupMessage()
         }
     })
@@ -836,7 +901,7 @@
     function postMessage() {
         const loc = window.location
         const url = `${loc.protocol}//${loc.host}/interact/api/messages/chat-group/`
-        
+
         const formdata = new FormData(document.querySelector('#chat-form'))
         formdata.append('chat_group', activeOptionsProxy.user.chat_id)
         formdata.append('sender', activeOptionsProxy.user.my_user_id)
@@ -859,7 +924,7 @@
     function postGroupMessage() {
         const loc = window.location
         const url = `${loc.protocol}//${loc.host}/interact/api/messages/groups/`
-        
+
         const formdata = new FormData(document.querySelector('#chat-form'))
         formdata.append('group', activeOptionsProxy.group.id)
         const my_id = document.getElementById('my_user_id').dataset.my_user_id
@@ -899,11 +964,11 @@
         initializeGlight()
     }
 
-    function printNewMessageToChat(obj, group=false) {
-        if(obj){
+    function printNewMessageToChat(obj, group = false) {
+        if (obj) {
             console.log("real time message: ", obj)
             const message = obj
-            if(group){
+            if (group) {
                 if (message !== null && message !== undefined && message !== '' && message?.group?.id === activeOptionsProxy?.group?.id) {
                     const my_id_ = document.getElementById('my_user_id').dataset.my_user_id
                     const my_id = parseInt(my_id_)
@@ -920,7 +985,7 @@
                     scrollToBottom('messages')
                 }
             }
-            else{
+            else {
                 if (message !== null && message !== undefined && message !== '' && message?.chat_group?.chat_name === activeOptionsProxy?.user?.chat_name) {
                     const my_id_ = document.getElementById('my_user_id').dataset.my_user_id
                     const my_id = parseInt(my_id_)

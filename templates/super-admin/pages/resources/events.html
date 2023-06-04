@@ -110,34 +110,26 @@
                     <thead>
                         <tr>
                             <th class="custom-th">Name</th>
-                            <th class="custom-th">Created By</th>
-                            <th class="custom-th-text">Description</th>
                             <th class="custom-th">County</th>
-                            <!--<th class="custom-th">Latitude</th>-->
-                            <!--<th class="custom-th">Longitude</th>-->
                             <th class="custom-th">Created On</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for obj in page_obj %}
                         <tr>
-                            <td>{{obj.name}}</td>
-                            <td>{{obj.created_by.first_name}} {{obj.created_by.last_name}}</td>
-                            <td>{{obj.description|truncatewords:6}}</td>
+                            <td>{{obj.title}}</td>
                             <td>{{obj.county}}</td>
                             <td>{{obj.created_on}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
-                    <!-- <tfoot>
+                    <tfoot>
                         <tr>
                             <th class="custom-th">Name</th>
-                            <th class="custom-th">Created By</th>
-                            <th class="custom-th-text">Description</th>
                             <th class="custom-th">County</th>
                             <th class="custom-th">Created On</th>
                         </tr>
-                    </tfoot> -->
+                    </tfoot>
                 </table>
                 <div>
                     {% if request.GET.page %}

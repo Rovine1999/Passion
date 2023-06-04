@@ -7,6 +7,7 @@ from django.contrib import messages
 
 from .models import UserChatGroup
 from resources.models import Post, Reply
+from giz_app.models import Profile
 
 
 def interact(request):
@@ -49,7 +50,7 @@ def single_post(request, post_id, slug):
         "post": post,
         "replies": Reply.objects.filter(post=post)
     }
-    return render(request, template_name='resources/single_post.html', context=context)
+    return render(request, template_name='agrul/pages/interact/single_post.html', context=context)
 
 
 @api_view(['POST'])
@@ -70,6 +71,18 @@ def add_friend(request):
 
 
 def add_new_friend(user_1, user_2):
+    user_1_has_profile = hasattr(user_1, 'profile')
+    user_2_has_profile = hasattr(user_2, 'profile')
+    if not user_1_has_profile:
+        profile = Profile.objects.create(user=user_1)
+        profile.save()
+        user_1.refresh_from_db()
+    
+    if not user_2_has_profile:
+        profile = Profile.objects.create(user=user_2)
+        profile.save()
+        user_2.refresh_from_db()
+    
     if user_1 and user_2:
         if user_1 not in user_2.profile.friends.all():
             user_2.profile.friends.add(user_1)

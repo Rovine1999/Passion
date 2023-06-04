@@ -29,7 +29,7 @@ class Event(models.Model):
     created_by = models.ForeignKey(
         User, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=False, null=False)
-    county_number = models.IntegerField(blank=True, null=True)
+    county = models.ForeignKey(County, blank=True, null=True, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True, null=True)
     description = models.TextField()
     venue = models.CharField(max_length=150)
