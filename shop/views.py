@@ -137,9 +137,41 @@ def single_county(request, county_id, county_slug):
     return render(request, template_name='agrul/pages/market/shop.html', context=context)
 
 
-def checkout(request):
-    return render(request, template_name='agrul/pages/market/checkout.html', context={})
+""" def checkout(request):
+    return render(request, template_name='agrul/pages/market/checkout.html', context={}) """
 
+def checkout(request):
+    # Example data, you should replace this with your actual data.
+    items = [
+        {
+            "pid": "754492",
+            "title": "passion fruit",
+            "aggregation_center": "kikambala self help group",
+            "date_published": "2012-12-12"
+        },
+        {
+            "pid": "754492",
+            "title": "dragon fruit",
+            "aggregation_center": "kikambala self help group",
+            "date_published": "2012-12-12"
+        }
+    ]
+
+    # Construct the URL dynamically
+    base_url = "https://tundatamu.e-granary.com/api/blockchain/generate/QR"
+    params = []
+    for i, item in enumerate(items):
+        for key, value in item.items():
+            params.append(f"{i}[].{key}={value}")
+    query_string = "&".join(params)
+    qr_url = f"{base_url}?{query_string}"
+
+    # Pass the URL to the template
+    context = {
+        'qr_url': qr_url
+    }
+
+    return render(request, template_name='agrul/pages/market/checkout.html', context=context)
 
 @api_view(['POST'])
 def place_order(request):
